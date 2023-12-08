@@ -100,7 +100,7 @@ verilog_dir:
 .PHONY: verilog
 verilog: build_v  verilog_dir
 	@echo Compiling for Verilog ...
-	bsc -u -verilog $(V_DIRS) $(BSC_COMP_FLAGS) $(BSC_PATHS) -g $(TOPMODULE)  $(TOPFILE)
+	bsc -u -verilog +RTS -K40000M -RTS $(V_DIRS) $(BSC_COMP_FLAGS) $(BSC_PATHS) -g $(TOPMODULE)  $(TOPFILE) 
 	@echo Compiling for Verilog finished
 
 .PHONY: v_link
