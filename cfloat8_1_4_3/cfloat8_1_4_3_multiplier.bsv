@@ -31,7 +31,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
 
     Reg#(Bit#(1)) final_sign <- mkReg(0);
     Reg#(Bit#(4)) final_exp <- mkReg(0);
-    Reg#(Bit#(6)) final_man <- mkReg(0);
+    Reg#(Bit#(8)) final_man <- mkReg(0);
     Reg#(Bit#(3)) output_man <- mkReg(0);
 
     Reg#(Bit#(1)) sign_op1 <- mkReg(0);
@@ -73,12 +73,34 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         stage <= stage+1;
         $display("***************************************************************************");
     endrule
+function Bit#(1) fn_hidden_bit_calc(Bit#(4) exponent);
+    if(exponent == 0)
+        begin
+        Bit#(1) hidden_bit_value = 1'b0;
+        end
+    else
+        begin
+        Bit#(1) hidden_bit_value = 1'b1;
+        end
+    return hidden_bit_value;
+endfunction
 
     rule stage3(stage == 3);
         $display("stage3");
+        Bit#(1) hidden_bit_op1;
+        Bit#(1) hidden_bit_op2;
+        
+        
+        hidden_bit_op1 = fn_hidden_bit_calc(exp_op1);
+        hidden_bit_op1 = fn_hidden_bit_calc(exp_op2);
+
         man_op1 <= tpl_1(rg_operands).mantissa;
         man_op2 <= tpl_2(rg_operands).mantissa;
-        final_man <= zeroExtend(man_op1) * zeroExtend(man_op2);
+
+        Bit#(8) inter_mantissa1 = zeroExtend({hidden_bit_op1,man_op1});
+        Bit#(8) inter_mantissa2 = zeroExtend({hidden_bit_op2,man_op2});
+    
+        final_man <= inter_mantissa1 * inter_mantissa2;
         $display("DEBUGG of prev stage ::: exp_op1 :", exp_op1, " exp_op2 :", exp_op2 , " final_exp" , final_exp);
         $display("DEBUGG ::: man_op1 : ", man_op1 , " man_op2 : ", man_op2);
         $display("final_man : %b",final_man);
