@@ -1,11 +1,12 @@
 package cfloat8_1_4_3_div;
 
+//import common_func ::*;
+
 typedef struct {
    bit     s;
    Bit#(ew)  e;
    Bit#(mw)  m;
 } Cfloat_type#(numeric type ew, numeric type mw) deriving (Bits);
-
 
 typedef struct {
    bit invalid;
@@ -14,63 +15,73 @@ typedef struct {
    bit underflow;
 } Exception deriving (Bits);
 
+function bit denormal( Cfloat_type#(4,3) op );
+   return op.e == 0 ? 1 : 0;
+endfunction
+
+function bit hidden( Cfloat_type#(4,3) op );
+   return unpack(denormal(op)) ? 0 : 1;
+endfunction
+
+function bit zero( Cfloat_type#(4,3) op );
+  return (unpack(denormal(op)) && (op.m == 0)) ? 1 : 0;
+endfunction
+
+
 typedef struct {
     bit sign        ;
-    Bit#(4) exp     ;
-    Bit#(4) dividend;
-    Bit#(4) divisor ;
+    Int#(7) exp     ;
+    Bit#(8) num  ;
+    Bit#(8) den  ;
     bit denormal    ;
     bit invalid     ;
 } Stage1 deriving (Bits);
 
 typedef struct {
     bit sign        ;
-    Bit#(4) exp     ;
-    Bit#(8) quotient;
+    Int#(7) exp     ;
+    Bit#(8) rem  ;
+    Bit#(8) den  ;
+    Bit#(5) quo ;
     bit denormal    ;
     bit invalid     ;
-} Stage2 deriving (Bits);
+} Div deriving (Bits);
 
-function Bit#(3) fn_operand_check (Cfloat_type#(4,3) op);
-  
-  bit invalid_op = 0;
-  bit denormal_op = 0;
-  bit hidden = 0;
 
-  if (op.e >= 0 && op.e <= 15) begin
-    if (op.e != 0) begin
-      hidden = 1;
+typedef struct {
+    bit sign        ;
+    Int#(7) exp     ;
+    Bit#(5) res;
+    bit denormal    ;
+    bit invalid     ;
+    bit overflow;
+    bit underflow;
+} Stage7 deriving (Bits);
+
+
+function Bit#(3) shift_den (Cfloat_type#(4,3) op1, Cfloat_type#(4,3) op2);
+  Bit#(3) shift = 3'b0;
+  if (op2.m < op1.m) begin
+    shift = pack(countZerosMSB({hidden(op2),op2.m}) + 1);
+  end
+  return shift;
+endfunction
+
+function Bit#(13) fn_div_stage (Bit#(8) r, Bit#(8) den, Bit#(5) quo);
+    Bit#(5) q = 5'b0;
+    Bit#(8) r2 = 8'b0;
+ 
+    if (r >= den) begin
+      q = {quo[3:0], 1'b1};
+      r2 = r - den;
     end
     else begin
-       if (op.m != 0) begin
-        denormal_op = 1;
-      end
+      q = {quo[3:0], 1'b0};
+      r2 = r << 1;
     end
-  end
-  else begin
-    invalid_op = 1;
-  end
-  return {invalid_op, denormal_op, hidden};
+    return {q,r2};
 endfunction
 
-function Bit#(4) fn_check(Cfloat_type#(4,3) op1, Cfloat_type#(4,3) op2);
-   bit invalid = 0;
-   bit denormal = 0;
-   bit hid1 = 0;
-   bit hid2 = 0;
-
-   //Tuple3#(bit, bit, bit) ch_op1 = tuple3(0,0,0);
-   //Tuple3#(bit, bit, bit) ch_op2 = tuple3(0,0,0);
-
-   Bit#(3) ch_op1 =  fn_operand_check(op1);
-   Bit#(3) ch_op2 =  fn_operand_check(op2);
-   invalid = ch_op1[2] | ch_op2[2];
-   denormal = ch_op1[1] | ch_op2[1];
-   hid1 = ch_op1[0];
-   hid2 = ch_op2[0];
-
-   return {invalid, denormal, hid1, hid2};
-endfunction
 
 interface Ifc_Cfloat_div;        
   method Action send(Cfloat_type#(4,3) op1, Cfloat_type#(4,3) op2, Bit#(6) bias);
@@ -85,43 +96,144 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
   Reg#(Cfloat_type#(4,3)) rg_op1 <- mkReg(unpack(0));
   Reg#(Cfloat_type#(4,3)) rg_op2 <- mkReg(unpack(0));
   Reg#(Bit#(6)) rg_bias <- mkReg(0);
+  Reg#(Int#(7)) rg_shift_den <- mkReg(0);
+  Reg#(Int#(7)) rg_bias_1 <- mkReg(0);
+  Reg#(Int#(7)) rg_bias_shift <- mkReg(0);
 
   Reg#(Stage1) rg_stage1 <- mkReg(unpack(0));
-  Reg#(Stage2) rg_stage2 <- mkReg(unpack(0));
+  Reg#(Div) rg_stage2 <- mkReg(unpack(0));
+  Reg#(Div) rg_stage3 <- mkReg(unpack(0));
+  Reg#(Div) rg_stage4 <- mkReg(unpack(0));
+  Reg#(Div) rg_stage5 <- mkReg(unpack(0));
+  Reg#(Div) rg_stage6 <- mkReg(unpack(0));
+  Reg#(Stage7) rg_stage7 <- mkReg(unpack(0));
   
   Reg#(Exception) rg_status <- mkReg(unpack(0));
   Reg#(Cfloat_type#(4,3)) rg_output <- mkReg(unpack(0));
 
   rule stage1_check;
-    Bit#(4) ch = unpack(fn_check(rg_op1, rg_op2));
-    bit invalid = ch[3];
-    bit denormal = ch[2];
-    Bit#(4) divisor = {ch[1], rg_op1.m};
-    Bit#(4) dividend = {ch[0], rg_op2.m};
-    Bit#(4) exp = rg_op2.e - rg_op1.e;
+    bit invalid = 0;
+    bit denor = denormal(rg_op1) | denormal(rg_op2);
+    Bit#(8) divisor = {hidden(rg_op1), rg_op1.m, 4'b0} >> shift_den(rg_op1, rg_op2);
+    Bit#(8) dividend = {hidden(rg_op2), rg_op2.m, 4'b0};
+    Int#(7) exp = unpack({3'b0,rg_op2.e} - {3'b0,rg_op1.e});
     bit sign = (rg_op2.s ^ rg_op1.s);
-
-    rg_stage1 <= Stage1 {sign : sign, exp : exp, dividend : dividend, divisor : divisor, denormal : denormal, invalid : invalid};
-
-  endrule
-
-  rule stage2_div;
-    Bit#(8) quot = zeroExtend(rg_stage1.dividend / rg_stage1.divisor);
-    rg_stage2 <= Stage2 {sign : rg_stage1.sign, exp : rg_stage1.exp, quotient : quot, denormal : rg_stage1.denormal, invalid : rg_stage1.invalid};
-    //rg_output <= unpack(out1);
-    //rg_status <= unpack(status1);
+//TODO:propagate shift_den, bias 
+    rg_shift_den <= unpack(zeroExtend(shift_den(rg_op1, rg_op2)));
+    rg_bias_1 <= unpack(zeroExtend(rg_bias));
+    rg_stage1 <= Stage1 {sign : sign, exp : exp, num : dividend, den : divisor, denormal : denor, invalid : invalid};
 
   endrule
 
-  rule stage3_norm;
+  rule stage2_div1;
     
+    Bit#(8) r = rg_stage1.num - rg_stage1.den;
+    Bit#(13) res = fn_div_stage (r, rg_stage2.den, rg_stage2.quo);
 
-  rule final_s;
-    rg_output <= Cfloat_type {s : rg_stage2.sign, e : rg_stage2.exp, m : rg_stage2.quotient[2:0]};
-    rg_status <= Exception {invalid : rg_stage2.invalid, denormal : rg_stage2.denormal, overflow : 1'b0, underflow : 1'b0};
+    rg_bias_shift <= rg_bias_1 - rg_shift_den; 
+
+    rg_stage2 <= Div {sign : rg_stage1.sign, exp : rg_stage1.exp, rem : res[7:0], den : rg_stage1.den, quo: res[12:8], denormal : rg_stage1.denormal, invalid : rg_stage1.invalid};
   endrule
-    
 
+  rule stage3_div2;
+    
+    Bit#(13) res = fn_div_stage (rg_stage2.rem, rg_stage2.den, rg_stage2.quo);
+    Int#(7) exp = rg_stage2.exp + rg_bias_shift;
+    
+    rg_stage3 <= Div {sign : rg_stage2.sign, exp : exp, rem : res[7:0], den : rg_stage2.den, quo: res[12:8], denormal : rg_stage2.denormal, invalid : rg_stage2.invalid};
+  endrule
+
+  rule stage4_div3;
+
+    Bit#(13) res = fn_div_stage (rg_stage3.rem, rg_stage3.den, rg_stage3.quo);
+
+    rg_stage4 <= Div {sign : rg_stage3.sign, exp : rg_stage3.exp, rem : res[7:0], den : rg_stage3.den, quo: res[12:8], denormal : rg_stage3.denormal, invalid : rg_stage3.invalid};
+  endrule
+
+  rule stage5_div4;
+
+    Bit#(13) res = fn_div_stage (rg_stage4.rem, rg_stage4.den, rg_stage4.quo);
+
+    rg_stage5 <= Div {sign : rg_stage4.sign, exp : rg_stage4.exp, rem : res[7:0], den : rg_stage4.den, quo: res[12:8], denormal : rg_stage4.denormal, invalid : rg_stage4.invalid};
+  endrule
+
+  rule stage6_div5;
+
+    Bit#(13) res = fn_div_stage (rg_stage5.rem, rg_stage5.den, rg_stage5.quo);
+
+    rg_stage6 <= Div {sign : rg_stage5.sign, exp : rg_stage5.exp, rem : res[7:0], den : rg_stage5.den, quo: res[12:8], denormal : rg_stage5.denormal, invalid : rg_stage5.invalid};
+  endrule
+
+  rule stage7_norm;
+    Int#(7) exp = rg_stage6.exp;
+
+    Bit#(4) pre_exp = 4'b0;
+    Bit#(5) pre_res = 5'b0;
+    bit overflow = 0;
+    bit underflow = 0;
+    bit invalid = 0;
+
+    if (exp > 15) begin
+      pre_res = 5'b11110;
+      pre_exp = 4'b1111;
+      overflow = 1;
+    end 
+    else if ((exp >= 1) && (exp <= 15)) begin
+      pre_res = rg_stage6.quo;
+      pre_exp = unpack(truncate(fromInteger(exp)));
+    end
+    else if (exp == 0) begin
+      pre_res = rg_stage6.quo;
+      invalid = 1;
+    end
+    else if (exp == -1) begin
+      pre_res = rg_stage6.quo >> 1;
+    end
+    else if (exp == -2) begin
+      pre_res = rg_stage6.quo >> 2;
+    end
+    else if (exp == -3) begin
+      pre_res = rg_stage6.quo >> 3;
+    end
+    else begin
+      underflow = 1;
+      pre_res = rg_stage6.quo >> 3;
+      pre_exp = truncate(fromInteger(exp)) + 3;
+    end
+
+    rg_stage7 <= Stage7 {sign : rg_stage6.sign, exp : pre_exp,  res: pre_res, denormal : rg_stage6.denormal, invalid : (rg_stage6.invalid | invalid), overflow: overflow, underflow : underflow};
+
+  endrule
+
+  rule stage8_round;
+    Bit#(4) final_res;
+    Bit#(4) final_exp; 
+    bit overflow;
+    if (rg_stage7.res[0] == 1) begin
+      if (rg_stage7.res[4:1] == 4'b1111) begin
+        final_res = 4'b1000;
+        final_exp = rg_stage7.exp + 1;
+       end
+       else begin
+        final_res = rg_stage7.res[4:1] + 1;
+        final_exp = rg_stage7.exp;
+      end
+
+    end
+    else begin
+      final_res = rg_stage7.res[4:1];
+      final_exp = rg_stage7.exp;
+    end
+
+    if (final_exp > 15) begin
+      overflow = 1;
+    end
+    else begin
+      overflow = 0;
+    end
+    rg_output <= Cfloat_type {s : rg_stage7.sign, e : final_exp, m : final_res[2:0]};
+    rg_status <= Exception {invalid : rg_stage7.invalid, denormal : rg_stage7.denormal, overflow : (overflow | rg_stage7.overflow), underflow : rg_stage7.underflow};
+  endrule
 
   method Action send(Cfloat_type#(4,3) op1, Cfloat_type#(4,3) op2, Bit#(6) bias);
     rg_op1 <= op1;
