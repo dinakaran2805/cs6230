@@ -1,0 +1,40 @@
+# read and elaborate design
+
+read_verilog cfloat8_mul.v 
+hierarchy -check -top cfloat8_mul
+
+#convert processes (always blocks) to netlist elements and perform some simple optimizations 
+proc; opt
+
+#analyze and optimize FSM
+fsm; opt
+
+#Analyze memories and create circuits to implement them
+memory; opt
+
+#translating netlist to gate logic and perform some simple optimizations
+techmap; opt
+
+#display design netlist using xdot
+#show -format dot -prefix cfloat8_mul
+
+#map internal register cell types to the register types described in the liberty file 
+dfflibmap -liberty osu018_stdcells.lib
+
+#mapping logic to liberty file and provide estimation of critical path delay
+#abc -dff -nocleanup -constr osu018_stdcells.constr -liberty osu018_stdcells.lib -D 100 #10GHz
+#abc -dff -nocleanup -constr osu018_stdcells.constr -liberty osu018_stdcells.lib -D 1000 #1GHz
+abc -dff -nocleanup -constr osu018_stdcells.constr -liberty osu018_stdcells.lib -D 10000 #100MHz
+
+# cleanup 
+#clean
+
+# write synthesized design to new verilog file 
+write_verilog synth_cfloat8_mul.v
+
+#write design to BLIF file
+write_blif synth.blif
+
+#Print statistics
+stat
+

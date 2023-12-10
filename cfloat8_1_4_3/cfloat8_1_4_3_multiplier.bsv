@@ -140,7 +140,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
 
         if(final_man != 8'b00000000)
         begin
-            stage <= stage+1;
+        stage <= stage+1;
         end     
         $display("***************************************************************************");
     endrule
@@ -176,6 +176,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
                     end    
                 else
                     begin
+                        //This condition will give a denormal value
                         normalized_man <= final_man[5:0] << final_exp;
                         final_exp <= 0;
                     end        
@@ -192,12 +193,12 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         $display("val of final output : ", final_output);
         if(normalized_man != 6'b000)
         begin
-            $display("DEBUGG of prev stage ::: man_op1 : ", man_op1 , " man_op2 : ", man_op2 , "output man : %b", normalized_man);
-            stage <= stage+1;
+        $display("DEBUGG of prev stage ::: man_op1 : ", man_op1 , " man_op2 : ", man_op2 , "output man : %b", normalized_man);
+        stage <= stage+1;
         end
         $display("***************************************************************************");
     endrule
-    // rule for rounding mode and final value
+    // rule for rounding mode and final normalization
     rule stage5(stage == 5);
         $display("stage5");
         if(tpl_3(rg_operands) == 1'b1)
