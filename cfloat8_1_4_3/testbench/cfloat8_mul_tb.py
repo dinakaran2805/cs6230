@@ -25,16 +25,21 @@ async def input_driver(dut, sign1, exp1, mantissa1, sign2, exp2, mantissa2, roun
 async def output_monitor(dut):
     await RisingEdge(dut.CLK)
     dut_output = dut.receive
-    dut_output_sign = dut_output[0]
-    dut_output_exponent = dut_output[1:5]
-    dut_output_mantissa = dut_output[5:]
+    print("dut output : ", dut_output.value , " type : ", type(dut_output.value))
+    dut_output_sign = str(dut_output.value)[0]
+    dut_output_exponent = str(dut_output.value)[1:5]
+    dut_output_mantissa = str(dut_output.value)[5:]
+    print(dut_output_sign, dut_output_exponent, dut_output_mantissa)
     return dut_output_sign, dut_output_exponent, dut_output_mantissa
 
 async def scoreboard(dut , dut_s, dut_e, dut_m , rm_s, rm_e, rm_m):
     await RisingEdge(dut.CLK)
-    assert dut_s == rm_s , "dut sign is not equal to the ref model sign"
-    assert dut_e == rm_e, "dut exponent is not equal to the ref model exponent"
-    assert dut_m == rm_m, "dut mantissa is not equal to the ref model mantissa"
+    print("dut s : {0} rm s : {1} {2} {3}".format(int(dut_s, 2), int(rm_s), type(int(dut_s, 2)), type(int(rm_s))))
+    print("dut e : {0} rm e : {1} {2} {3}".format(int(dut_e, 2), int(rm_e), type(int(dut_e, 2)), type(int(rm_e))))
+    print("dut m : {0} rm m : {1} {2} {3}".format(int(dut_m, 2), int(rm_m.zfill(3), 2), type(int(dut_m, 2)), type(int(rm_m.zfill(3), 2))))
+    assert int(dut_s, 2) == int(rm_s) , "dut sign is not equal to the ref model sign"
+    assert int(dut_e, 2) == int(rm_e), "dut exponent is not equal to the ref model exponent"
+    assert int(dut_m, 2) == int(rm_m.zfill(3), 2), "dut mantissa is not equal to the ref model mantissa"
     print("TEST PASSED!!!")
 
 
@@ -54,7 +59,7 @@ def fn_to_shift_to_first_one_from_msb(input_string):
 def ref_model(sign1, exp1, mantissa1, sign2, exp2, mantissa2, rounding_mode, exponent_bias):
     
     rm_sign = sign1 ^ sign2
-    rm_exponent = exp1 + exp2
+    rm_exponent = exp1 + exp2 - exponent_bias
     hidden_bit1 = hidden_bit_cal(exp1)
     hidden_bit2 = hidden_bit_cal(exp2)
     man1 = hidden_bit1 << 3 | mantissa1 << 0
@@ -92,8 +97,10 @@ async def test(dut):
     r_mode = 1
     exp_bias = 4
     await input_driver(dut, sign1, exp1, man1, sign2, exp2, man2, r_mode, exp_bias)
-    await Timer(20, 'ns')
+    await Timer(10, 'ns')
+    # await output_monitor(dut)
     dut_sign , dut_exp, dut_mantissa = await output_monitor(dut)
-    print("dut sign : {0} dut exp : {1} dut mantissa : {2}".format(dut_sign, dut_exp, dut_mantissa))
+    # print("dut sign : {0} dut exp : {1} dut mantissa : {2}".format(dut_sign, dut_exp, dut_mantissa))
     rm_sign, rm_exp, rm_mantissa = ref_model(sign1, exp1, man1, sign2, exp2, man2, r_mode, exp_bias)
-    await scoreboard(dut_sign, dut_exp, dut_mantissa, rm_sign, rm_exp, rm_mantissa)
+    print("rm sign : {0} rm exp : {1} rm man : {2} types {3} {4} {5}".format(rm_sign, rm_exp, rm_mantissa , type(rm_sign), type(rm_exp), type(rm_mantissa)))
+    await scoreboard(dut, dut_sign, dut_exp, dut_mantissa, rm_sign, rm_exp, rm_mantissa)

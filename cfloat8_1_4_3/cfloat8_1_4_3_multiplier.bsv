@@ -58,6 +58,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
 
     Reg#(Bit#(3)) stage <- mkReg(1);
     
+    Reg#(Bit#(3)) status_flags <- mkReg(0);
 
     Reg#(Bit#(1)) final_sign <- mkReg(0);
     Reg#(Bit#(4)) final_exp <- mkReg(0);
@@ -165,7 +166,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         buffer2_bias <= buffer1_bias;
 
         // final_bias <= tpl_4(rg_operands);
-        final_exp <=  (buffer2_exp1 + buffer2_exp2);
+        final_exp <=  (buffer2_exp1 + buffer2_exp2 - buffer2_bias);
         stage2_output <= DT_cf8_143{sign: stage1_output.sign, exponent: final_exp, mantissa: 3'b000};
         $display("STAGE 2 OUTPUT : sign : ", stage2_output.sign, " exponent : ", stage2_output.exponent, " mantissa : ", stage2_output.mantissa);
         // $display("DEBUGG of prev stage ::: sign_op1 :",sign_op1 , " sign_op2 :",sign_op2, " final_sign :", final_sign);
@@ -296,6 +297,19 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
 
         stage5_output <= DT_cf8_143{sign: stage4_output.sign, exponent: stage4_output.exponent, mantissa: rounded_man};
 
+        if(stage5_output.exponent == 4'b0000 && stage5_output.mantissa == 3'b000)
+            begin
+            status_flags <= 3'b001;
+            end
+        else if(stage5_output.exponent == 4'b0000 && stage5_output.mantissa != 3'b000)
+            begin
+            status_flags <= 3'b010;
+            end
+        else
+            begin
+            status_flags <= 3'b100;
+            end    
+        $display("status flags : ", status_flags);
         $display("STAGE 5 OUTPUT : sign : ", stage5_output.sign, " exponent : ", stage5_output.exponent, " mantissa : ", stage5_output.mantissa);    
         // final_output <= DT_cf8_143{sign: final_sign, exponent: final_exp, mantissa: rounded_man};
         // $display("INTER VALUES sign : ", stage4_output.sign, " exp : ", stage4_output.exponent , " mantissa : ", rounded_man);
