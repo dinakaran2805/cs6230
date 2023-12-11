@@ -50,7 +50,7 @@ typedef struct {
 
 typedef struct {
     bit sign        ;
-    Int#(7) exp     ;
+    Bit#(4) pre_exp     ;
     Bit#(5) res;
     bit denormal    ;
     bit invalid     ;
@@ -180,7 +180,7 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     end 
     else if ((exp >= 1) && (exp <= 15)) begin
       pre_res = rg_stage6.quo;
-      pre_exp = unpack(truncate(fromInteger(exp)));
+      pre_exp = truncate(pack(exp));
     end
     else if (exp == 0) begin
       pre_res = rg_stage6.quo;
@@ -198,10 +198,10 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     else begin
       underflow = 1;
       pre_res = rg_stage6.quo >> 3;
-      pre_exp = truncate(fromInteger(exp)) + 3;
+      pre_exp = truncate(pack(exp)) + 3;
     end
 
-    rg_stage7 <= Stage7 {sign : rg_stage6.sign, exp : pre_exp,  res: pre_res, denormal : rg_stage6.denormal, invalid : (rg_stage6.invalid | invalid), overflow: overflow, underflow : underflow};
+    rg_stage7 <= Stage7 {sign : rg_stage6.sign, pre_exp : pre_exp,  res: pre_res, denormal : rg_stage6.denormal, invalid : (rg_stage6.invalid | invalid), overflow: overflow, underflow : underflow};
 
   endrule
 
@@ -212,17 +212,17 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     if (rg_stage7.res[0] == 1) begin
       if (rg_stage7.res[4:1] == 4'b1111) begin
         final_res = 4'b1000;
-        final_exp = rg_stage7.exp + 1;
+        final_exp = rg_stage7.pre_exp + 1;
        end
        else begin
         final_res = rg_stage7.res[4:1] + 1;
-        final_exp = rg_stage7.exp;
+        final_exp = rg_stage7.pre_exp;
       end
 
     end
     else begin
       final_res = rg_stage7.res[4:1];
-      final_exp = rg_stage7.exp;
+      final_exp = rg_stage7.pre_exp;
     end
 
     if (final_exp > 15) begin
