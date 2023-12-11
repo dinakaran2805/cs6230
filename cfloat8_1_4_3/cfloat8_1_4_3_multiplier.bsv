@@ -142,6 +142,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
        
         final_sign <= buffer1_sign1 ^ buffer1_sign2;
         stage1_output <= DT_cf8_143{sign: final_sign, exponent: 4'b0000, mantissa: 3'b000};
+        $display("STAGE 1 OUTPUT : sign : ", stage1_output.sign, " exponent : ", stage1_output.exponent, " mantissa : ", stage1_output.mantissa);
         // $display("DEBUGG ::: sign_op1 :",sign_op1 , " sign_op2 :",sign_op2);
         // $display("val of final sign : ", final_sign);
         // // stage <= 2;
@@ -166,9 +167,10 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         // final_bias <= tpl_4(rg_operands);
         final_exp <=  (buffer2_exp1 + buffer2_exp2);
         stage2_output <= DT_cf8_143{sign: stage1_output.sign, exponent: final_exp, mantissa: 3'b000};
-        $display("DEBUGG of prev stage ::: sign_op1 :",sign_op1 , " sign_op2 :",sign_op2, " final_sign :", final_sign);
-        $display("DEBUGG ::: exp_op1 :", exp_op1, " exp_op2 :", exp_op2);
-        $display("val of final exp : ", final_exp, "val of bias : ",tpl_4(rg_operands),pack(tpl_4(rg_operands)));
+        $display("STAGE 2 OUTPUT : sign : ", stage2_output.sign, " exponent : ", stage2_output.exponent, " mantissa : ", stage2_output.mantissa);
+        // $display("DEBUGG of prev stage ::: sign_op1 :",sign_op1 , " sign_op2 :",sign_op2, " final_sign :", final_sign);
+        // $display("DEBUGG ::: exp_op1 :", exp_op1, " exp_op2 :", exp_op2);
+        // $display("val of final exp : ", final_exp, "val of bias : ",tpl_4(rg_operands),pack(tpl_4(rg_operands)));
         // if(final_exp != 4'b0000)
         // begin
         // $display("DINA DEBUGGG : val of final_exp : %b" , final_exp);
@@ -182,8 +184,8 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         $display("stage3");
         Bit#(1) hidden_bit_op1;
         Bit#(1) hidden_bit_op2;
-        Bit#(4) inter_mantissa1;
-        Bit#(4) inter_mantissa2;
+        Bit#(8) inter_mantissa1;
+        Bit#(8) inter_mantissa2;
         
 
         buffer3_sign1 <= buffer2_sign1;
@@ -202,15 +204,16 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         // man_op1 <= tpl_1(rg_operands).mantissa;
         // man_op2 <= tpl_2(rg_operands).mantissa;
 
-        inter_mantissa1 = {hidden_bit_op1,buffer3_man1};
-        inter_mantissa2 = {hidden_bit_op2,buffer3_man2};
+        inter_mantissa1 = zeroExtend({hidden_bit_op1,buffer3_man1});
+        inter_mantissa2 = zeroExtend({hidden_bit_op2,buffer3_man2});
         
-        let inter_man = (inter_mantissa1 * inter_mantissa2);
-        final_man <= zeroExtend(inter_man);
+        let inter_man = inter_mantissa1 * inter_mantissa2;
+        final_man <= inter_man;
         stage3_output <= DT_cf8_143{sign: stage2_output.sign, exponent: stage2_output.exponent, mantissa: stage2_output.mantissa};
-        $display("DEBUGG of prev stage ::: exp_op1 :", exp_op1, " exp_op2 :", exp_op2 , " final_exp" , final_exp);
-        $display("DEBUGG ::: man_op1 : ", man_op1 , " man_op2 : ", man_op2);
-        $display("final_man : %b",final_man);
+        $display("STAGE 3 OUTPUT : sign : ", stage3_output.sign, " exponent : ", stage3_output.exponent, " mantissa : ", stage3_output.mantissa);
+        // $display("DEBUGG of prev stage ::: exp_op1 :", exp_op1, " exp_op2 :", exp_op2 , " final_exp" , final_exp);
+        // $display("DEBUGG ::: man_op1 : ", man_op1 , " man_op2 : ", man_op2);
+        // $display("final_man : %b",final_man);
 
         // if(final_man != 8'b00000000)
         // begin
@@ -259,17 +262,18 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
                         normalized_exp <= 0;
                         stage4_output <= DT_cf8_143{sign: stage3_output.sign, exponent: normalized_exp, mantissa: stage3_output.mantissa};
                     end        
-                $display("DEBUGG MSB count zeros : %b " , count_msb , "final exp : %b" , final_exp);
-                $display("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                
+                // $display("DEBUGG MSB count zeros : %b " , count_msb , "final exp : %b" , final_exp);
+                // $display("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
             end    
-        $display("value of normalized man : %b", normalized_man);
+        // $display("value of normalized man : %b", normalized_man);
         
 
 
-    
-        $display("stage4");
-        $display("val of final output : ", final_output);
+        $display("STAGE 4 OUTPUT : sign : ", stage4_output.sign, " exponent : ", stage4_output.exponent, " mantissa : ", stage4_output.mantissa);    
+        // $display("stage4");
+        // $display("val of final output : ", final_output);
         // if(normalized_man != 6'b000)
         // begin
         // $display("DEBUGG of prev stage ::: man_op1 : ", man_op1 , " man_op2 : ", man_op2 , "output man : %b", normalized_man);
@@ -292,9 +296,10 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
 
         stage5_output <= DT_cf8_143{sign: stage4_output.sign, exponent: stage4_output.exponent, mantissa: rounded_man};
 
+        $display("STAGE 5 OUTPUT : sign : ", stage5_output.sign, " exponent : ", stage5_output.exponent, " mantissa : ", stage5_output.mantissa);    
         // final_output <= DT_cf8_143{sign: final_sign, exponent: final_exp, mantissa: rounded_man};
-        $display("INTER VALUES sign : ", stage4_output.sign, " exp : ", stage4_output.exponent , " mantissa : ", rounded_man);
-        $display("displaying the output ::: sign", stage5_output.sign , " exp : ", stage5_output.exponent, " man : ", stage5_output.mantissa);
+        // $display("INTER VALUES sign : ", stage4_output.sign, " exp : ", stage4_output.exponent , " mantissa : ", rounded_man);
+        // $display("displaying the output ::: sign", stage5_output.sign , " exp : ", stage5_output.exponent, " man : ", stage5_output.mantissa);
     endrule
 
 
