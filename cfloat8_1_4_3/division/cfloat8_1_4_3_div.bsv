@@ -13,6 +13,9 @@ typedef struct {
    bit denormal;
    bit overflow;
    bit underflow;
+   bit gd_underflow;
+   bit unknown;
+   bit zero;
 } Exception deriving (Bits);
 
 function bit denormal( Cfloat_type#(4,3) op );
@@ -54,8 +57,7 @@ typedef struct {
     Bit#(5) res;
     bit denormal    ;
     bit invalid     ;
-    bit overflow;
-    bit underflow;
+    Bit#(4) categ ;
 } Stage7 deriving (Bits);
 
 
@@ -169,52 +171,83 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
 
     Bit#(4) pre_exp = 4'b0;
     Bit#(5) pre_res = 5'b0;
-    bit overflow = 0;
-    bit underflow = 0;
-    bit invalid = 0;
+    Bit#(4) categ = 4'b0000;
 
     if (exp > 15) begin
       pre_res = 5'b11110;
       pre_exp = 4'b1111;
-      overflow = 1;
+      categ = 4'b0001;
     end 
     else if ((exp >= 1) && (exp <= 15)) begin
       pre_res = rg_stage6.quo;
       pre_exp = truncate(pack(exp));
+      categ = 4'b0010;
     end
     else if (exp == 0) begin
       pre_res = rg_stage6.quo;
-      invalid = 1;
+      pre_exp = 0;
+      categ = 4'b0100;
     end
     else if (exp == -1) begin
       pre_res = rg_stage6.quo >> 1;
+      pre_exp = 0;
+      categ = 4'b1000;
     end
     else if (exp == -2) begin
       pre_res = rg_stage6.quo >> 2;
+      pre_exp = 0;
+      categ = 4'b1000;
     end
     else if (exp == -3) begin
       pre_res = rg_stage6.quo >> 3;
+      pre_exp = 0;
+      categ = 4'b1000;
+    end
+    else if (exp == -4) begin
+      if (rg_stage6.quo[3] == 1) begin
+        pre_res = 5'b00010;
+        categ = 4'b1000;
+      end
+      else begin
+        pre_res = 5'b00000;
+        categ = 4'b0000;
+      end
+      pre_exp = 0;
     end
     else begin
-      underflow = 1;
-      pre_res = rg_stage6.quo >> 3;
-      pre_exp = truncate(pack(exp)) + 3;
+      pre_res = 5'b00000;
+      pre_exp = 0;
+      categ = 4'b0000;
     end
 
-    rg_stage7 <= Stage7 {sign : rg_stage6.sign, pre_exp : pre_exp,  res: pre_res, denormal : rg_stage6.denormal, invalid : (rg_stage6.invalid | invalid), overflow: overflow, underflow : underflow};
+    rg_stage7 <= Stage7 {sign : rg_stage6.sign, pre_exp : pre_exp,  res: pre_res, denormal : rg_stage6.denormal, invalid : rg_stage6.invalid, categ : categ };
 
   endrule
 
   rule stage8_round;
     Bit#(4) final_res;
     Bit#(4) final_exp; 
-    bit overflow;
+    bit overflow = 0;
+    bit underflow = 0;
+    bit invalid = 0;
+    bit gd_underflow = 0;
+    bit unknown = 0;
+    bit zero = 0;
+    Bit#(4) categ = rg_stage7.categ; 
+
     if (rg_stage7.res[0] == 1) begin
       if (rg_stage7.res[4:1] == 4'b1111) begin
-        final_res = 4'b1000;
-        final_exp = rg_stage7.pre_exp + 1;
-       end
-       else begin
+        if (rg_stage7.pre_exp == 4'b1111) begin
+          final_res = 4'b1111;
+          final_exp = 4'b1111;
+        end
+        else begin
+          final_res = 4'b1000;
+          final_exp = rg_stage7.pre_exp + 1;
+        end
+        categ = categ >> 1;
+      end
+      else begin
         final_res = rg_stage7.res[4:1] + 1;
         final_exp = rg_stage7.pre_exp;
       end
@@ -225,14 +258,33 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
       final_exp = rg_stage7.pre_exp;
     end
 
-    if (final_exp > 15) begin
+    if (categ == 4'b0001) begin
       overflow = 1;
     end
-    else begin
-      overflow = 0;
+    else if (categ == 4'b0100) begin
+      if (final_res[2] == 1) begin
+        final_res = 4'b1000;
+        final_exp = 1;
+      end
+      else begin
+        final_res = 4'b0111;
+        final_exp = 0;
+        gd_underflow = 1;
+      end
+      underflow = 1;
+      unknown = 1;
     end
+    else if (categ == 4'b1000) begin
+      underflow = 1;
+      gd_underflow = 1;
+    end
+    else if (categ == 4'b0000) begin
+      underflow = 1;
+      zero = 1;
+    end
+
     rg_output <= Cfloat_type {s : rg_stage7.sign, e : final_exp, m : final_res[2:0]};
-    rg_status <= Exception {invalid : rg_stage7.invalid, denormal : rg_stage7.denormal, overflow : (overflow | rg_stage7.overflow), underflow : rg_stage7.underflow};
+    rg_status <= Exception {invalid : rg_stage7.invalid, denormal : rg_stage7.denormal, overflow : overflow, underflow : underflow, gd_underflow : gd_underflow, unknown : unknown, zero : zero};
   endrule
 
   method Action send(Cfloat_type#(4,3) op1, Cfloat_type#(4,3) op2, Bit#(6) bias);
