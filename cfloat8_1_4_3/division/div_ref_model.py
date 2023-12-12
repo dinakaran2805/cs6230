@@ -46,7 +46,7 @@ def decimal_to_cfloat8_1_4_3(d):
     n = sign + exp + mant
     return n
 
-def division (op1, op2):
+def division (op1, op2, bias):
     q = op2/op1
     
     uf = 0
@@ -113,16 +113,17 @@ def division (op1, op2):
         temp_q = (1.875 * (2**15))
         of = 1
             
-    return temp_q
+    return (temp_q * (2**bias))
 
 def main():
     b = "00000010"
     a = "00001000"
+    bias = 0
     
     op1 = cfloat8_1_4_3_to_decimal(a)
     op2 = cfloat8_1_4_3_to_decimal(b)
     #print(op1 , op2)
-    quo = division (abs(op1), abs(op2))
+    quo = division (abs(op1), abs(op2), bias)
     #print(quo)
     if op1*op2 > 0:
         q = quo
