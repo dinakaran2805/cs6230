@@ -61,7 +61,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
     Reg#(Bit#(3)) status_flags <- mkReg(0);
 
     Reg#(Bit#(1)) final_sign <- mkReg(0);
-    Reg#(Bit#(4)) final_exp <- mkReg(0);
+    Reg#(Bit#(7)) final_exp <- mkReg(0);
     Reg#(Bit#(8)) final_man <- mkReg(0);
     Reg#(Bit#(3)) output_man <- mkReg(0);
 
@@ -155,6 +155,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         $display("stage2");
         // exp_op1 <= tpl_1(rg_operands).exponent;
         // exp_op2 <= tpl_2(rg_operands).exponent;
+        // Bit#(7) temp_exp;
 
         buffer2_sign1 <= buffer1_sign1;
         buffer2_sign2 <= buffer1_sign2;
@@ -166,8 +167,18 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         buffer2_bias <= buffer1_bias;
 
         // final_bias <= tpl_4(rg_operands);
-        final_exp <=  (buffer2_exp1 + buffer2_exp2 - buffer2_bias);
-        stage2_output <= DT_cf8_143{sign: stage1_output.sign, exponent: final_exp, mantissa: 3'b000};
+        let temp_exp =  buffer2_exp1 + buffer2_exp2 - buffer2_bias ;
+        $display("buffer exp1 : %b", buffer2_exp1 , " buffer exp2 : %b", buffer2_exp2, " buffer2 bias : %b", buffer2_bias);
+        $display("val of temp exp : %b", temp_exp);
+        if(temp_exp > 15)
+            begin
+                //overflow condition for exponent
+                $display("val of temp exp before overflow : ", temp_exp);
+                temp_exp = 15; 
+                $display("val of temp exp before overflow : ", temp_exp);
+
+            end
+        stage2_output <= DT_cf8_143{sign: stage1_output.sign, exponent: truncate(temp_exp), mantissa: 3'b000};
         $display("STAGE 2 OUTPUT : sign : ", stage2_output.sign, " exponent : ", stage2_output.exponent, " mantissa : ", stage2_output.mantissa);
         // $display("DEBUGG of prev stage ::: sign_op1 :",sign_op1 , " sign_op2 :",sign_op2, " final_sign :", final_sign);
         // $display("DEBUGG ::: exp_op1 :", exp_op1, " exp_op2 :", exp_op2);
