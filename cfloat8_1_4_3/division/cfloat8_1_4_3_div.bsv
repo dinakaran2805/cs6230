@@ -94,8 +94,15 @@ function Bit#(13) fn_div_stage (Bit#(8) r, Bit#(8) den, Bit#(5) quo);
       r2 = r - den;
     end
     else begin
-      q = {quo[3:0], 1'b0};
       r2 = r << 1;
+      if (r2 >= den) begin
+        q = {quo[3:0], 1'b1};
+        r2 = r2 - den;
+      end
+      else begin
+        q = {quo[3:0], 1'b0};
+      end
+
     end
     return {q,r2};
 endfunction
@@ -208,7 +215,7 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
 
     rg_stage6 <= Div {sign : rg_stage5.sign, exp : rg_stage5.exp, rem : res[7:0], den : rg_stage5.den, quo: res[12:8], denormal : rg_stage5.denormal, invalid : rg_stage5.invalid};
     rg_valid[6] <= rg_valid[5];
-    if (rg_valid[6] == 1) $display("STAGE6 :: rem : %0b quo : %0b", res[7:0], res[12:8]);
+    if (rg_valid[6] == 1) $display("STAGE6 :: exp : %d rem : %0b quo : %0b", rg_stage5.exp, res[7:0], res[12:8]);
   endrule
 
   rule stage7_norm;
@@ -265,6 +272,7 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
       pre_res = 5'b00000;
       pre_exp = 0;
       categ = 4'b0000;
+      underflow = 1;
     end
 
     rg_stage7 <= Stage7 {sign : rg_stage6.sign, pre_exp : pre_exp,  res: pre_res, denormal : rg_stage6.denormal, invalid : rg_stage6.invalid, underflow : underflow, categ : categ };
