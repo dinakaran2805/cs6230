@@ -17,6 +17,41 @@ BSC_VDIR:=$(subst /bin/bsc,/,${BSC_DIR})bin/../lib/Verilog
 BSC_VIVADODIR:=$(subst /bin/bsc,/,${BSC_DIR})bin/../lib/Verilog.Vivado
 
 
+TOPLEVEL_LANG=verilog
+SIM=verilator
+PWD=$(shell pwd)
+#TESTCASE=exe_code
+DUMP_EN ?= 0
+CVG_EN ?= 0
+
+ifeq ($(TOPLEVEL_LANG),verilog)
+  VERILOG_SOURCES =$(PWD)/verilog/*.v
+else
+  $(error "A valid value (verilog) was not provided for TOPLEVEL_LANG=$(TOPLEVEL_LANG)")
+endif
+
+EXTRA_ARGS = -O3 --x-assign fast --x-initial fast --bbox-sys -Wno-STMTDLY -Wno-UNOPTFLAT -Wno-WIDTH -Wno-lint -Wno-COMBDLY -Wno-INITIALDLY --autoflush --threads -DBSV_RESET_FIFO_HEAD -DBSV_RESET_FIFO_ARRAY -DBSV_NO_INITIAL_BLOCKS
+ifeq ($(DUMP_EN),1)
+    EXTRA_ARGS += --trace-fst --trace-structs
+endif
+
+ifeq ($(CVG_EN),1)
+    EXTRA_ARGS += --coverage
+endif
+
+TOPLEVEL := $(TOP_MODULE)
+MODULE   := test_div
+
+include $(shell cocotb-config --makefiles)/Makefile.sim
+
+.PHONY: cocotb_sim
+cocotb_sim: 
+	@make sim
+
+.PHONY: compile
+compile:
+	@make sim_build/Vtop
+
 generate_verilog:
 	@echo Compiling $(TOP_MODULE) in verilog ...
 	@mkdir -p $(VERILOGDIR);
