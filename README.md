@@ -17,7 +17,7 @@ same functionality of the design.
 
 SYNTHESIS:
 Synthesis is done using YOSYS. A synthesis script is written and the required lib files and contraints is present in the synthesis folder. The final netlist is 
-also present in the same folder.
+also present in the same folder. Openlane tool is used to get the timing reports.
 
 STEPS TO RUN:
 
@@ -26,3 +26,16 @@ To run the testbench : make (in testbench folder)
 To run the synthesis : yosys cfloat8.ys (in synthesis folder)
 
 Run the commands in the respective folders.
+
+OUTPUTS AND WAVEFORM
+
+![project_res1](https://github.com/dinakaran2805/cs6230/assets/130367148/6f0c8798-3350-4b0c-b816-e272dde209e6)
+
+Waveform
+![project_waveform1](https://github.com/dinakaran2805/cs6230/assets/130367148/f7a45158-ce6e-43e8-bd1d-5d40947d6e72)
+
+Waveform for pipelined test
+![project_waveform2](https://github.com/dinakaran2805/cs6230/assets/130367148/b4ecebff-d1af-4c66-aab5-d7cdb6419b45)
+
+
+
