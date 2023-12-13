@@ -100,9 +100,18 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
     Reg#(Bit#(3)) buffer3_man2 <- mkReg(0);
     Reg#(Bit#(1)) buffer3_rmode <- mkReg(0);
     Reg#(Bit#(4)) buffer3_bias <- mkReg(0);
+    Reg#(Bit#(4)) buffer3_exp <- mkReg(0);
 
     Reg#(Bit#(1)) buffer4_rmode <- mkReg(0);
     Reg#(Bit#(4)) buffer4_bias <- mkReg(0);
+    Reg#(Bit#(1)) buffer4_sign1 <- mkReg(0);
+    Reg#(Bit#(1)) buffer4_sign2 <- mkReg(0);
+    Reg#(Bit#(4)) buffer4_exp1 <- mkReg(0);
+    Reg#(Bit#(4)) buffer4_exp2 <- mkReg(0);
+    Reg#(Bit#(3)) buffer4_man1 <- mkReg(0);
+    Reg#(Bit#(3)) buffer4_man2 <- mkReg(0);
+    
+    Reg#(Bit#(4)) buffer4_exp <- mkReg(0);
 
     Reg#(Bit#(1)) buffer5_rmode <- mkReg(0);
     Reg#(Bit#(4)) buffer5_bias <- mkReg(0);
@@ -121,16 +130,9 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
     Reg#(DT_cf8_143) stage5_output <- mkReg(DT_cf8_143{sign: 1'b0, exponent: 4'b0000, mantissa: 3'b000});
 
     Reg#(Tuple4#(DT_cf8_143, DT_cf8_143,  Bit#(1), Bit#(4))) rg_operands <- mkReg(tuple4(DT_cf8_143{sign: 1'b0, exponent: 4'b0000, mantissa: 3'b000},DT_cf8_143{sign: 1'b0, exponent: 4'b0000, mantissa: 3'b000},1'b0, 4'b0));
-    Reg#(DT_cf8_143) final_output <- mkReg(DT_cf8_143{sign: 1'b0, exponent: 4'b0000, mantissa: 3'b000});
-    // rule trial;
-       
-    //     $display("welcome to the project");
-    //     $display("***************************************************************************");
-    // endrule   
+    
     
     rule stage1;
-        // sign_op1 <= tpl_1(rg_operands).sign;
-        // sign_op2 <= tpl_2(rg_operands).sign;
         
         buffer1_sign1 <= tpl_1(rg_operands).sign;
         buffer1_sign2 <= tpl_2(rg_operands).sign;
@@ -143,18 +145,11 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
        
         final_sign <= buffer1_sign1 ^ buffer1_sign2;
         stage1_output <= DT_cf8_143{sign: final_sign, exponent: 4'b0000, mantissa: 3'b000};
-        $display("STAGE 1 OUTPUT : sign : ", stage1_output.sign, " exponent : ", stage1_output.exponent, " mantissa : ", stage1_output.mantissa);
-        // $display("DEBUGG ::: sign_op1 :",sign_op1 , " sign_op2 :",sign_op2);
-        // $display("val of final sign : ", final_sign);
-        // // stage <= 2;
-        // $display("val of stage: ",stage); 
-        // $display("***************************************************************************");
+        // $display("STAGE 1 OUTPUT : sign : ", stage1_output.sign, " exponent : ", stage1_output.exponent, " mantissa : ", stage1_output.mantissa);
+        
     endrule
 
     rule stage2;
-        $display("stage2");
-        // exp_op1 <= tpl_1(rg_operands).exponent;
-        // exp_op2 <= tpl_2(rg_operands).exponent;
         Bit#(7) temp_exp;
 
         buffer2_sign1 <= buffer1_sign1;
@@ -166,34 +161,19 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         buffer2_rmode <= buffer1_rmode;
         buffer2_bias <= buffer1_bias;
 
-        // final_bias <= tpl_4(rg_operands);
         temp_exp =  (zeroExtend(buffer2_exp1) + zeroExtend(buffer2_exp2) - zeroExtend(buffer2_bias)) ;
-        $display("buffer exp1 : %b", buffer2_exp1 , " buffer exp2 : %b", buffer2_exp2, " buffer2 bias : %b", buffer2_bias);
-        $display("val of temp exp : %b", temp_exp);
         if(temp_exp > 15)
             begin
                 //overflow condition for exponent
-                $display("val of temp exp before overflow : ", temp_exp);
                 temp_exp = 15; 
-                $display("val of temp exp before overflow : ", temp_exp);
-
             end
         stage2_output <= DT_cf8_143{sign: stage1_output.sign, exponent: truncate(temp_exp), mantissa: 3'b000};
-        $display("STAGE 2 OUTPUT : sign : ", stage2_output.sign, " exponent : ", stage2_output.exponent, " mantissa : ", stage2_output.mantissa);
-        // $display("DEBUGG of prev stage ::: sign_op1 :",sign_op1 , " sign_op2 :",sign_op2, " final_sign :", final_sign);
-        // $display("DEBUGG ::: exp_op1 :", exp_op1, " exp_op2 :", exp_op2);
-        // $display("val of final exp : ", final_exp, "val of bias : ",tpl_4(rg_operands),pack(tpl_4(rg_operands)));
-        // if(final_exp != 4'b0000)
-        // begin
-        // $display("DINA DEBUGGG : val of final_exp : %b" , final_exp);
-        // stage <= 3;
-        // end    
-        $display("***************************************************************************");
+        // $display("STAGE 2 OUTPUT : sign : ", stage2_output.sign, " exponent : ", stage2_output.exponent, " mantissa : ", stage2_output.mantissa);
+  
     endrule
 
     // rule to calculate the mantissa
     rule stage3;
-        $display("stage3");
         Bit#(1) hidden_bit_op1;
         Bit#(1) hidden_bit_op2;
         Bit#(8) inter_mantissa1;
@@ -208,13 +188,12 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         buffer3_man2 <= buffer2_man2;
         buffer3_rmode <= buffer2_rmode;
         buffer3_bias <= buffer2_bias;
+        buffer3_exp <= stage2_output.exponent;
 
 
         hidden_bit_op1 = fn_hidden_bit_calc(buffer3_exp1);
         hidden_bit_op2 = fn_hidden_bit_calc(buffer3_exp2);
 
-        // man_op1 <= tpl_1(rg_operands).mantissa;
-        // man_op2 <= tpl_2(rg_operands).mantissa;
 
         inter_mantissa1 = zeroExtend({hidden_bit_op1,buffer3_man1});
         inter_mantissa2 = zeroExtend({hidden_bit_op2,buffer3_man2});
@@ -222,23 +201,23 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         let inter_man = inter_mantissa1 * inter_mantissa2;
         final_man <= inter_man;
         stage3_output <= DT_cf8_143{sign: stage2_output.sign, exponent: stage2_output.exponent, mantissa: stage2_output.mantissa};
-        $display("STAGE 3 OUTPUT : sign : ", stage3_output.sign, " exponent : ", stage3_output.exponent, " mantissa : ", stage3_output.mantissa);
-        // $display("DEBUGG of prev stage ::: exp_op1 :", exp_op1, " exp_op2 :", exp_op2 , " final_exp" , final_exp);
-        // $display("DEBUGG ::: man_op1 : ", man_op1 , " man_op2 : ", man_op2);
-        // $display("final_man : %b",final_man);
+        // $display("STAGE 3 OUTPUT : sign : ", stage3_output.sign, " exponent : ", stage3_output.exponent, " mantissa : ", stage3_output.mantissa);
 
-        // if(final_man != 8'b00000000)
-        // begin
-        // stage <= 4;
-        // end     
-        $display("***************************************************************************");
     endrule
 
     // rule to normalize the value
     rule stage4;
-        $display("val of final man : %b ", final_man);
+
+        buffer4_sign1 <= buffer3_sign1;
+        buffer4_sign2 <= buffer3_sign2;
+        buffer4_exp1 <=  buffer3_exp1;
+        buffer4_exp2 <=  buffer3_exp2;
+        buffer4_man1 <= buffer3_man1;
+        buffer4_man2 <= buffer3_man2;
+
         buffer4_rmode <= buffer3_rmode;
         buffer4_bias <= buffer3_bias;
+        buffer4_exp <= buffer3_exp;
 
         if(final_man[7:6] == 2'b01)
             begin
@@ -247,11 +226,10 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
             end
         else if(final_man[7:6] == 2'b10 || final_man[7:6] == 2'b11)
             begin
-                $display("the value of the hidden product is 10 or 11 . The exact value is : %b" ,final_man[7:6]);
                 normalized_man <= zeroExtend(final_man[5:0] >> 1);
                 normalized_exp <= stage3_output.exponent + 1;
                 stage4_output <= DT_cf8_143{sign: stage3_output.sign, exponent: normalized_exp, mantissa: stage3_output.mantissa};
-                $display("before shifting : %b" , final_man[5:0] , "after shifting : %b ", normalized_man);
+                
             end    
         
         else
@@ -260,7 +238,6 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
                 let count_msb = countZerosMSB(final_man[5:0]);
                 count_msb = count_msb + 1;
                 count_temp = zeroExtend(pack(count_msb));
-                $display("latest DEBUGG : count_temp  : %b" , count_temp , "final_exp : %b ", stage3_output.sign);
                 if(count_temp < stage3_output.exponent)
                     begin
                         normalized_man <= final_man[5:0] << count_temp;
@@ -275,27 +252,19 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
                         stage4_output <= DT_cf8_143{sign: stage3_output.sign, exponent: normalized_exp, mantissa: stage3_output.mantissa};
                     end        
                 
-                // $display("DEBUGG MSB count zeros : %b " , count_msb , "final exp : %b" , final_exp);
-                // $display("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+                
 
             end    
-        // $display("value of normalized man : %b", normalized_man);
-        
 
-
-        $display("STAGE 4 OUTPUT : sign : ", stage4_output.sign, " exponent : ", stage4_output.exponent, " mantissa : ", stage4_output.mantissa);    
-        // $display("stage4");
-        // $display("val of final output : ", final_output);
-        // if(normalized_man != 6'b000)
-        // begin
-        // $display("DEBUGG of prev stage ::: man_op1 : ", man_op1 , " man_op2 : ", man_op2 , "output man : %b", normalized_man);
-        // stage <= 5;
-        // end
-        $display("***************************************************************************");
+        // $display("STAGE 4 OUTPUT : sign : ", stage4_output.sign, " exponent : ", stage4_output.exponent, " mantissa : ", stage4_output.mantissa);    
+        // $display("***************************************************************************");
     endrule
+
+
     // rule for rounding mode and final normalization
     rule stage5;
-        $display("stage5");
+        Bit#(4) temp_exponent;
+        Bit#(3) temp_mantissa;
         buffer5_rmode <= buffer4_rmode;
         buffer5_bias <= buffer4_bias;
 
@@ -303,10 +272,16 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
             begin
             rounded_man <= fn_round_to_nearest(normalized_man);
             end
-        //TODO add else condition to support the other rounding mode    
-        $display("value of rounded man : %b" , rounded_man);
+        //TODO add else condition to support the other rounding mode
 
-        stage5_output <= DT_cf8_143{sign: stage4_output.sign, exponent: stage4_output.exponent, mantissa: rounded_man};
+        temp_exponent = stage4_output.exponent;
+        temp_mantissa = rounded_man;
+        if(buffer4_exp >= 15)
+        begin
+                temp_exponent = 15;
+                temp_mantissa = 7;
+        end
+        stage5_output <= DT_cf8_143{sign: stage4_output.sign, exponent: temp_exponent, mantissa: temp_mantissa};
 
         if(stage5_output.exponent == 4'b0000 && stage5_output.mantissa == 3'b000)
             begin
@@ -322,25 +297,17 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
             end    
         $display("status flags : ", status_flags);
         $display("STAGE 5 OUTPUT : sign : ", stage5_output.sign, " exponent : ", stage5_output.exponent, " mantissa : ", stage5_output.mantissa);    
-        // final_output <= DT_cf8_143{sign: final_sign, exponent: final_exp, mantissa: rounded_man};
-        // $display("INTER VALUES sign : ", stage4_output.sign, " exp : ", stage4_output.exponent , " mantissa : ", rounded_man);
-        // $display("displaying the output ::: sign", stage5_output.sign , " exp : ", stage5_output.exponent, " man : ", stage5_output.mantissa);
+
     endrule
 
 
     method Action send(Tuple4#(DT_cf8_143,DT_cf8_143, Bit#(1) , Bit#(4)) data_input);
         rg_operands<=data_input;
-        // stage <= 1;
-        $display("Inside the method SEND");
-        $display("val at operand1 is : ",tpl_1(rg_operands), " operand2 : ",tpl_2(rg_operands) , " r mode : ", tpl_3(rg_operands), " exp_bias", tpl_4(rg_operands) );
     endmethod
 
     method DT_cf8_143 receive();
         return stage5_output;
-    endmethod
-    // method ReturnType#(8,23) receive();
-    //     $display("val at operand1 is : ",rg_operands.0, "operand2 : ",rg_operands.1 , "r mode : ", rg_operands.2, "exp_bias", rg_operands.3 );
-    // endmethod    
+    endmethod 
 
 endmodule    
 

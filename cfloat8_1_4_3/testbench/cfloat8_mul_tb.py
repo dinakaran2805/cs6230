@@ -26,7 +26,7 @@ async def input_driver(dut, sign1, exp1, mantissa1, sign2, exp2, mantissa2, roun
 async def output_monitor(dut):
     await RisingEdge(dut.CLK)
     dut_output = dut.receive
-    print("dut output : ", dut_output.value , " type : ", type(dut_output.value))
+    dut._log.info("dut output : ", dut_output.value , " type : ", type(dut_output.value))
     dut_output_sign = str(dut_output.value)[0]
     dut_output_exponent = str(dut_output.value)[1:5]
     dut_output_mantissa = str(dut_output.value)[5:]
@@ -192,6 +192,7 @@ def ref_model(sign1, exp1, mantissa1, sign2, exp2, mantissa2, rounding_mode, exp
     
     rm_sign = sign1 ^ sign2
     rm_exponent = exp1 + exp2 - exponent_bias
+    rm_exponent_temp = rm_exponent
     hidden_bit1 = hidden_bit_cal(exp1)
     hidden_bit2 = hidden_bit_cal(exp2)
     man1 = hidden_bit1 << 3 | mantissa1 << 0
@@ -214,6 +215,10 @@ def ref_model(sign1, exp1, mantissa1, sign2, exp2, mantissa2, rounding_mode, exp
         rounded_man = bin(int(normalized_man[:3], 2) + 1)[2:].zfill(3)
     else:
         rounded_man = normalized_man[:3]
+
+    if(rm_exponent_temp >= 15):
+        rm_exponent = 15
+        rounded_man = 7    
     
     return rm_sign , rm_exponent , rounded_man
 
@@ -227,13 +232,6 @@ def split_string_into_bits(input):
 
 async def testbench(dut, input1, input2, exp_bias):
     await initial_setup(dut)
-    await initial_setup(dut)
-    # sign1 = int(input1[0], 2)
-    # sign2 = int(input2[0], 2)
-    # exp1 = int(input1[1:5], 2)
-    # exp2 = int(input2[1:5], 2)
-    # man1 = int(input1[5:], 2)
-    # man2 = int(input2[5:], 2)
 
     sign1, exp1, man1 = split_string_into_bits(input1)
     sign2, exp2, man2 = split_string_into_bits(input2)    
@@ -248,6 +246,31 @@ async def testbench(dut, input1, input2, exp_bias):
 
 
 @cocotb.test()
+async def tb_pipeline(dut):
+    await initial_setup(dut)
+    input1_list = ["10010011","10011011","10100011","10101011","10110011"]
+    input2_list = ["10001001","10001101","10001010","00001001","10001001"] 
+    exp_bias = 1   
+    r_mode = 1
+    for i in range(len(input1_list)):
+        sign1, exp1, man1 = split_string_into_bits(input1_list[i])
+        sign2, exp2, man2 = split_string_into_bits(input2_list[i])
+        await input_driver(dut, sign1, exp1, man1, sign2, exp2, man2, r_mode, exp_bias)
+
+    for j in range(len(input1_list)):
+        dut_sign , dut_exp, dut_mantissa = await output_monitor(dut)
+        rm_output = main_model(input1_list[j], input2_list[j], exp_bias)
+        # rm_sign, rm_exp, rm_mantissa = rm_for_multiplication()
+        print("rm output for {0}: {1}".format(j,rm_output))
+        # await scoreboard(dut, dut_sign, dut_exp, dut_mantissa, rm_output)
+
+    await Timer(20,'ns')    
+
+
+
+
+
+@cocotb.test()
 async def test(dut):
     await initial_setup(dut)
     sign1 = 1
@@ -257,7 +280,7 @@ async def test(dut):
     exp2 = 1
     man2 = 1
     r_mode = 1
-    exp_bias = 4
+    exp_bias = 2
     await input_driver(dut, sign1, exp1, man1, sign2, exp2, man2, r_mode, exp_bias)
     await Timer(10, 'ns')
     # await output_monitor(dut)
@@ -269,8 +292,29 @@ async def test(dut):
 
 
 @cocotb.test()
-async def trial(dut):
-    input1 = "00001101"
-    input2 = "10011101"
-    bias = 3
+async def tb_normal(dut):
+    input1 = "10010011"
+    input2 = "10001001"
+    bias = 2
+    await testbench(dut, input1, input2, bias)    
+
+@cocotb.test()
+async def tb_subnormal(dut):
+    input1 = "10000011"
+    input2 = "11001001"
+    bias = 2
+    await testbench(dut, input1, input2, bias)        
+
+@cocotb.test()
+async def tb_overflow(dut):
+    input1 = "11111001"
+    input2 = "11111010"
+    bias = 2
+    await testbench(dut, input1, input2, bias)
+
+@cocotb.test()
+async def tb_zero(dut):
+    input1 = "10001000"
+    input2 = "10001000"
+    bias = 2
     await testbench(dut, input1, input2, bias)    

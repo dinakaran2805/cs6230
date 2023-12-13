@@ -112,8 +112,10 @@ def multiplication (op1, op2, bias):
     elif q > (1.875 * (2**15)):
         temp_q = (1.875 * (2**15))
         of = 1
-            
+        return (temp_q)
+        
     return (temp_q / (2**bias))
+    # return (temp_q )
 
 def main_model(input1, input2, bias):
     # b = "00010011"
