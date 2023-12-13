@@ -56,7 +56,7 @@ def division (op1, op2, bias):
     
     dn = denormal(op1) or denormal(op2) 
 
-    q = op2/op1
+    q = (op2/op1) * (2**bias)
 
     
     uf = 0
@@ -123,7 +123,7 @@ def division (op1, op2, bias):
         temp_q = (1.875 * (2**15))
         of = 1
 
-    result = (temp_q * (2**bias))
+    result = (temp_q)
     status = '0'+str(dn)+str(of)+str(uf)+str(guf)+str(unk)+str(z)
     return result, status
 
