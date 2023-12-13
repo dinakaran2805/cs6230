@@ -155,7 +155,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         $display("stage2");
         // exp_op1 <= tpl_1(rg_operands).exponent;
         // exp_op2 <= tpl_2(rg_operands).exponent;
-        // Bit#(7) temp_exp;
+        Bit#(7) temp_exp;
 
         buffer2_sign1 <= buffer1_sign1;
         buffer2_sign2 <= buffer1_sign2;
@@ -167,7 +167,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         buffer2_bias <= buffer1_bias;
 
         // final_bias <= tpl_4(rg_operands);
-        let temp_exp =  buffer2_exp1 + buffer2_exp2 - buffer2_bias ;
+        temp_exp =  (zeroExtend(buffer2_exp1) + zeroExtend(buffer2_exp2) - zeroExtend(buffer2_bias)) ;
         $display("buffer exp1 : %b", buffer2_exp1 , " buffer exp2 : %b", buffer2_exp2, " buffer2 bias : %b", buffer2_bias);
         $display("val of temp exp : %b", temp_exp);
         if(temp_exp > 15)
