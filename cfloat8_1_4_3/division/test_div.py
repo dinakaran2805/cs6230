@@ -97,6 +97,22 @@ async def test_nn_1(dut):
     await tb.TB(dut, op1, op2, bias)
 
 @cocotb.test()
+async def test_nd_1(dut):
+    tb = top_TB(dut)
+    op2 = "00010010"
+    op1 = "00000010"
+    bias = 0
+    await tb.TB(dut, op1, op2, bias)
+
+@cocotb.test()
+async def test_dn_1(dut):
+    tb = top_TB(dut)
+    op2 = "00000010"
+    op1 = "00001010"
+    bias = 0
+    await tb.TB(dut, op1, op2, bias)
+
+@cocotb.test()
 async def test_dd_2(dut):
     tb = top_TB(dut)
     op2 = "00000100"
@@ -108,6 +124,22 @@ async def test_dd_2(dut):
 async def test_nn_2(dut):
     tb = top_TB(dut)
     op1 = "00010010"
+    op2 = "00001010"
+    bias = 0
+    await tb.TB(dut, op1, op2, bias)
+
+@cocotb.test()
+async def test_nd_2(dut):
+    tb = top_TB(dut)
+    op1 = "00010010"
+    op2 = "00000010"
+    bias = 0
+    await tb.TB(dut, op1, op2, bias)
+
+@cocotb.test()
+async def test_dn_2(dut):
+    tb = top_TB(dut)
+    op1 = "00000010"
     op2 = "00001010"
     bias = 0
     await tb.TB(dut, op1, op2, bias)
