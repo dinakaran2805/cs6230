@@ -1,0 +1,4 @@
+
+13. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\cfloat8_mul.\normalized_man$D_IN' from process `\cfloat8_mul.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/multiplication/verilog_dir/cfloat8_mul.v:597$7'.
+No latch inferred for signal `\cfloat8_mul.\normalized_exp$D_IN' from process `\cfloat8_mul.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/multiplication/verilog_dir/cfloat8_mul.v:582$2'.
