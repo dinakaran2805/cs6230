@@ -37,6 +37,9 @@
 
 Note - here sequencer and scoreboard runs independent and parallel with other
 
+### Steps to run simulation
+ Refer - https://github.com/dinakaran2805/cs6230/tree/master/cfloat8_1_4_3/division/tb#readme
+
 ## Synthesis:
 
 Area = 5415.77 um2
@@ -48,4 +51,3 @@ hold slack = -0.2597 ns
 at 100MHz,
 setup slack = +6.023178 ns
 hold slack = + 0.2667 ns
-
