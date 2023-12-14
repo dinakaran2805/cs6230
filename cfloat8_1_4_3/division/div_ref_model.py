@@ -137,9 +137,9 @@ def div_rm(a, b, bias):
     #print(op1 , op2)
     quo, status = division (abs(op1), abs(op2), bias)
     #print(quo)
-    if op1*op2 > 0:
+    if (a[0] == b[0]):
         q = quo
-    elif op1*op2 < 0:
+    else:
         q = -quo
     result = decimal_to_cfloat8_1_4_3(q)
     return result, status
