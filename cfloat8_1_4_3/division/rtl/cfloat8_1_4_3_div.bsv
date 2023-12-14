@@ -62,6 +62,8 @@ typedef struct {
     Bit#(4) categ ;
 } Stage7 deriving (Bits);
 
+
+//change denormal hidden+mantissa to normal hidden+mantissa i.e., ex - 0.001 to 1.000 *(2**-3)
 function Tuple2#(Bit#(4), Int#(7)) pre_proc (Cfloat_type#(4,3) op);
   Int#(7) shift = 0;
   Bit#(4) hm = 0;
@@ -83,12 +85,10 @@ function Tuple2#(Bit#(4), Int#(7)) pre_proc (Cfloat_type#(4,3) op);
   return tuple2(hm, e);
 endfunction
 
+//each iteration of division
 function Bit#(13) fn_div_stage (Bit#(8) r, Bit#(8) den, Bit#(5) quo);
     Bit#(5) q = 5'b0;
-    Bit#(8) r2 = 8'b0;
-
-
- 
+    Bit#(8) r2 = 8'b0; 
     if (r >= den) begin
       q = {quo[3:0], 1'b1};
       r2 = r - den;
@@ -137,10 +137,13 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
   Reg#(Exception) rg_status <- mkReg(unpack(0));
   Reg#(Cfloat_type#(4,3)) rg_output <- mkReg(unpack(0));
 
+
+  
   rule stage1_check;
     bit invalid = 0;
     bit denor = 0;
 
+    //change numbers to 1.xxx
     let {hm1, e1} = pre_proc(rg_op1);
     let {hm2, e2} = pre_proc(rg_op2);
 
@@ -150,6 +153,7 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     bit sign = (rg_op2.s ^ rg_op1.s);
     denor = denormal(rg_op1) | denormal(rg_op2);
 
+    //make denominator less than numerator
     if (hm1 > hm2) begin
       divisor = {hm1, 4'b0} >> 1;
       exp = e2 - e1 - 1;
@@ -166,7 +170,8 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     if (rg_valid[1] == 1) $display("STAGE1 :: sign : %0b, exp : %0b, num : %0b, den : %0b, denormal : %0b, invalid : %0b hm1 : %0b hm2 : %0b e1 : %0b e2 : %0b", sign, exp, dividend, divisor, denor, invalid, hm1, hm2, e1, e2);
 
   endrule
-
+  
+  //division 1st iteration
   rule stage2_div1;
     
     Bit#(8) r = rg_stage1.num; // - rg_stage1.den;
@@ -180,7 +185,8 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     rg_valid[2] <= rg_valid[1];
     if (rg_valid[2] == 1) $display("STAGE2 :: exp %0b rem : %0b quo : %0b", exp, res[7:0], res[12:8]);
   endrule
-
+  
+  //division 2nd iteration
   rule stage3_div2;
     
     Bit#(13) res = fn_div_stage (rg_stage2.rem, rg_stage2.den, rg_stage2.quo);
@@ -191,6 +197,7 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     if (rg_valid[3] == 1) $display("STAGE3 :: rem : %0b quo : %0b", res[7:0], res[12:8]);
   endrule
 
+  //division 3rd iteration
   rule stage4_div3;
 
     Bit#(13) res = fn_div_stage (rg_stage3.rem, rg_stage3.den, rg_stage3.quo);
@@ -199,7 +206,7 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     rg_valid[4] <= rg_valid[3];
     if (rg_valid[4] == 1) $display("STAGE4 :: rem : %0b quo : %0b", res[7:0], res[12:8]);
   endrule
-
+  //division 4th iteration
   rule stage5_div4;
 
     Bit#(13) res = fn_div_stage (rg_stage4.rem, rg_stage4.den, rg_stage4.quo);
@@ -209,6 +216,7 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     if (rg_valid[5] == 1) $display("STAGE5 :: rem : %0b quo : %0b", res[7:0], res[12:8]);
   endrule
 
+  //division 5th iteration
   rule stage6_div5;
 
     Bit#(13) res = fn_div_stage (rg_stage5.rem, rg_stage5.den, rg_stage5.quo);
@@ -218,6 +226,7 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     if (rg_valid[6] == 1) $display("STAGE6 :: exp : %d rem : %0b quo : %0b", rg_stage5.exp, res[7:0], res[12:8]);
   endrule
 
+  //rounding of 0 to 0.125 and normalisation of remaining numbers
   rule stage7_norm;
     Int#(7) exp = rg_stage6.exp;
 
@@ -279,7 +288,8 @@ module mk_cfloat8_div(Ifc_Cfloat_div);
     rg_valid[7] <= rg_valid[6];
     if (rg_valid[7] == 1) $display("STAGE7 :: pre_exp : %0b pre_res : %0b, underflow : %0b, categ : %0b", pre_exp, pre_res, underflow, categ);
   endrule
-
+  
+  //rounding and status flag checks
   rule stage8_round;
     Bit#(4) final_res;
     Bit#(4) final_exp; 
