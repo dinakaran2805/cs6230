@@ -1,34 +1,34 @@
 # Division
 
-RTL:
+## RTL:
 
-stage1:
+### stage1:
 1. change operands to 1.xxx * 2**y format
 2. make denominator less than numerator
 3. sign calculation
 4. check operand is denormal or not
 
-stage2 to stage6:
+### stage2 to stage6:
 1. each iteration of division stage
 
-stage7:
+### stage7:
 1. normalise the numbers within range
 2. round 0 to 0.125 numbers
 3. underflow calculation
 
-stage8:
+### stage8:
 1. final rounding
 2. overflow, gradual underflow, zero flags calculation
 
 
-Verification:
+## Verification:
 
-reference model:
+### reference model:
 1. cfloat to decimal
 2. division, normalisation and rounding
 3. decimal to cfloat
 
-testbench:
+### testbench:
 1. generation of inputs
 2. sequencer which takes inputs and sends to driver as well as gets the expected result from reference model
 3. driver sends inputs to rtl
@@ -37,7 +37,7 @@ testbench:
 
 Note - here sequencer and scoreboard runs independent and parallel with other
 
-Synthesis
+## Synthesis
 
 Area = 5415.77 um2
 
