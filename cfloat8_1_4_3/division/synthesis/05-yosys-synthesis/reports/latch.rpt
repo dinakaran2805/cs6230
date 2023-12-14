@@ -1,0 +1,6 @@
+
+13. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mk_cfloat8_div.\final_res__h6330' from process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:797$131'.
+No latch inferred for signal `\mk_cfloat8_div.\final_exp__h6331' from process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:788$130'.
+No latch inferred for signal `\mk_cfloat8_div.\_theResult___snd_snd_snd__h6169' from process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:775$129'.
+No latch inferred for signal `\mk_cfloat8_div.\_theResult___snd_snd_fst__h6166' from process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:765$128'.

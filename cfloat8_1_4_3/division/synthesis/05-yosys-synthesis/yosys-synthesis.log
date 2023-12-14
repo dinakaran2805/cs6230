@@ -1,0 +1,2090 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060, clang++ 11.1.0 -fPIC -Os)
+
+[TCL: yosys -import] Command name collision: found pre-existing command `cd' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `eval' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `exec' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `read' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `trace' -> skip.
+Reading SCL library '/home/kapil/.volare/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib' as a blackboxâ¦
+
+1. Executing Liberty frontend: /home/kapil/.volare/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+Imported 428 cell types from liberty file.
+
+2. Executing Verilog-2005 frontend: /home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v
+Parsing SystemVerilog input from `/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v' to AST representation.
+Warning: Encountered `translate_off' comment! Such legacy hot comments are supported by Yosys, but are not part of any formal language specification. Using a portable and standards-compliant construct such as `ifdef is recommended!
+Generating RTLIL representation for module `\mk_cfloat8_div'.
+Note: Assuming pure combinatorial block at /home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:765.3-774.6 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Note: Assuming pure combinatorial block at /home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:775.3-787.6 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Note: Assuming pure combinatorial block at /home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:788.3-796.6 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Note: Assuming pure combinatorial block at /home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:797.3-805.6 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+Successfully finished Verilog frontend.
+
+3. Generating Graphviz representation of design.
+Writing dot description to `/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/runs/RUN_2023-12-14_05-20-19/05-yosys-synthesis/hierarchy.dot'.
+Dumping module mk_cfloat8_div to page 1.
+
+4. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1. Analyzing design hierarchy..
+Top module:  \mk_cfloat8_div
+
+4.2. Analyzing design hierarchy..
+Top module:  \mk_cfloat8_div
+Removed 0 unused modules.
+Renaming module mk_cfloat8_div to mk_cfloat8_div.
+
+5. Executing HIERARCHY pass (managing design hierarchy).
+
+5.1. Analyzing design hierarchy..
+Top module:  \mk_cfloat8_div
+
+5.2. Analyzing design hierarchy..
+Top module:  \mk_cfloat8_div
+Removed 0 unused modules.
+
+6. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+7. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132 in module mk_cfloat8_div.
+Marked 1 switch rules as full_case in process $proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:797$131 in module mk_cfloat8_div.
+Marked 1 switch rules as full_case in process $proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:788$130 in module mk_cfloat8_div.
+Marked 1 switch rules as full_case in process $proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:775$129 in module mk_cfloat8_div.
+Marked 1 switch rules as full_case in process $proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:765$128 in module mk_cfloat8_div.
+Removed a total of 0 dead cases.
+
+8. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 4 assignments to connections.
+
+9. Executing PROC_INIT pass (extract init attributes).
+
+10. Executing PROC_ARST pass (detect async resets in processes).
+
+11. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~27 debug messages>
+
+12. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+     1/22: $0\rg_valid_8[0:0]
+     2/22: $0\rg_valid_7[0:0]
+     3/22: $0\rg_valid_6[0:0]
+     4/22: $0\rg_valid_5[0:0]
+     5/22: $0\rg_valid_4[0:0]
+     6/22: $0\rg_valid_3[0:0]
+     7/22: $0\rg_valid_2[0:0]
+     8/22: $0\rg_valid_1[0:0]
+     9/22: $0\rg_valid_0[0:0]
+    10/22: $0\rg_status[6:0]
+    11/22: $0\rg_stage7[16:0]
+    12/22: $0\rg_stage6[30:0]
+    13/22: $0\rg_stage5[30:0]
+    14/22: $0\rg_stage4[30:0]
+    15/22: $0\rg_stage3[30:0]
+    16/22: $0\rg_stage2[30:0]
+    17/22: $0\rg_stage1[25:0]
+    18/22: $0\rg_output[7:0]
+    19/22: $0\rg_op2[7:0]
+    20/22: $0\rg_op1[7:0]
+    21/22: $0\rg_bias_1[6:0]
+    22/22: $0\rg_bias[5:0]
+Creating decoders for process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:797$131'.
+     1/1: $1\final_res__h6330[3:0]
+Creating decoders for process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:788$130'.
+     1/1: $1\final_exp__h6331[3:0]
+Creating decoders for process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:775$129'.
+     1/1: $1\_theResult___snd_snd_snd__h6169[4:0]
+Creating decoders for process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:765$128'.
+     1/1: $1\_theResult___snd_snd_fst__h6166[3:0]
+
+13. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\mk_cfloat8_div.\final_res__h6330' from process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:797$131'.
+No latch inferred for signal `\mk_cfloat8_div.\final_exp__h6331' from process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:788$130'.
+No latch inferred for signal `\mk_cfloat8_div.\_theResult___snd_snd_snd__h6169' from process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:775$129'.
+No latch inferred for signal `\mk_cfloat8_div.\_theResult___snd_snd_fst__h6166' from process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:765$128'.
+
+14. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\mk_cfloat8_div.\rg_bias' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$261' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_bias_1' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$262' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_op1' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$263' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_op2' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$264' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_output' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$265' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_stage1' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$266' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_stage2' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$267' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_stage3' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$268' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_stage4' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$269' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_stage5' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$270' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_stage6' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$271' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_stage7' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$272' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_status' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$273' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_valid_0' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$274' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_valid_1' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$275' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_valid_2' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$276' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_valid_3' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$277' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_valid_4' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$278' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_valid_5' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$279' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_valid_6' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$280' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_valid_7' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$281' with positive edge clock.
+Creating register for signal `\mk_cfloat8_div.\rg_valid_8' using process `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+  created $dff cell `$procdff$282' with positive edge clock.
+
+15. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+16. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 23 empty switches in `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+Removing empty process `mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:809$132'.
+Found and cleaned up 1 empty switch in `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:797$131'.
+Removing empty process `mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:797$131'.
+Found and cleaned up 1 empty switch in `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:788$130'.
+Removing empty process `mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:788$130'.
+Found and cleaned up 1 empty switch in `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:775$129'.
+Removing empty process `mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:775$129'.
+Found and cleaned up 1 empty switch in `\mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:765$128'.
+Removing empty process `mk_cfloat8_div.$proc$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:765$128'.
+Cleaned up 27 empty switches.
+
+17. Executing CHECK pass (checking for obvious problems).
+Checking module mk_cfloat8_div...
+Found and reported 0 problems.
+
+18. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~54 debug messages>
+
+19. Executing FLATTEN pass (flatten design).
+
+20. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 1 unused cells and 180 unused wires.
+<suppressed ~2 debug messages>
+
+22. Executing OPT pass (performing simple optimizations).
+
+22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~54 debug messages>
+Removed a total of 18 cells.
+
+22.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~27 debug messages>
+
+22.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+22.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+22.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+22.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 0 unused cells and 16 unused wires.
+<suppressed ~1 debug messages>
+
+22.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+22.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+22.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~27 debug messages>
+
+22.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+22.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+22.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+22.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+22.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+22.16. Finished OPT passes. (There is nothing left to do.)
+
+23. Executing FSM pass (extract and optimize FSM).
+
+23.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+23.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+23.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+23.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+23.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+23.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+23.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+24. Executing OPT pass (performing simple optimizations).
+
+24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+24.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~27 debug messages>
+
+24.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+24.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+24.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$282 ($dff) from module mk_cfloat8_div (D = \rg_valid_7, Q = \rg_valid_8, rval = 1'0).
+Adding SRST signal on $procdff$281 ($dff) from module mk_cfloat8_div (D = \rg_valid_6, Q = \rg_valid_7, rval = 1'0).
+Adding SRST signal on $procdff$280 ($dff) from module mk_cfloat8_div (D = \rg_valid_5, Q = \rg_valid_6, rval = 1'0).
+Adding SRST signal on $procdff$279 ($dff) from module mk_cfloat8_div (D = \rg_valid_4, Q = \rg_valid_5, rval = 1'0).
+Adding SRST signal on $procdff$278 ($dff) from module mk_cfloat8_div (D = \rg_valid_3, Q = \rg_valid_4, rval = 1'0).
+Adding SRST signal on $procdff$277 ($dff) from module mk_cfloat8_div (D = \rg_valid_2, Q = \rg_valid_3, rval = 1'0).
+Adding SRST signal on $procdff$276 ($dff) from module mk_cfloat8_div (D = \rg_valid_1, Q = \rg_valid_2, rval = 1'0).
+Adding SRST signal on $procdff$275 ($dff) from module mk_cfloat8_div (D = \rg_valid_0, Q = \rg_valid_1, rval = 1'0).
+Adding SRST signal on $procdff$274 ($dff) from module mk_cfloat8_div (D = \EN_send, Q = \rg_valid_0, rval = 1'0).
+Adding SRST signal on $procdff$273 ($dff) from module mk_cfloat8_div (D = { \rg_stage7 [5] \rg_stage7 [6] \overflow__h6322 \rg_stage7 [4] \gd_underflow__h6324 \rg_status_D_IN [1] \zero__h6328 }, Q = \rg_status, rval = 7'0000000).
+Adding SRST signal on $procdff$272 ($dff) from module mk_cfloat8_div (D = { \rg_stage6 [30] \x__h6010 \pre_res__h5960 [4:1] \rg_stage6 [1:0] \x__h6219 \x__h6230 [0] }, Q = { \rg_stage7 [16:8] \rg_stage7 [6:4] \rg_stage7 [0] }, rval = 13'0000000000000).
+Adding SRST signal on $procdff$272 ($dff) from module mk_cfloat8_div (D = { \_theResult___snd_snd_snd__h6159 [0] \_theResult___snd_snd_fst__h6158 [1] }, Q = { \rg_stage7 [7] \rg_stage7 [1] }, rval = 2'00).
+Adding SRST signal on $procdff$272 ($dff) from module mk_cfloat8_div (D = \_theResult___snd_snd_fst__h6166 [3:2], Q = \rg_stage7 [3:2], rval = 2'00).
+Adding SRST signal on $procdff$271 ($dff) from module mk_cfloat8_div (D = { \rg_stage5 [30:23] \x__h5692 \rg_stage5 [14:7] \rg_stage5 [5:2] \_theResult___fst__h5726 [0] \rg_stage5 [1:0] }, Q = \rg_stage6, rval = 31'0000000000000000000000000000000).
+Adding SRST signal on $procdff$270 ($dff) from module mk_cfloat8_div (D = { \rg_stage4 [30:23] \x__h5377 \rg_stage4 [14:7] \rg_stage4 [5:2] \_theResult___fst__h5411 [0] \rg_stage4 [1:0] }, Q = \rg_stage5, rval = 31'0000000000000000000000000000000).
+Adding SRST signal on $procdff$269 ($dff) from module mk_cfloat8_div (D = { \rg_stage3 [30:23] \x__h5062 \rg_stage3 [14:7] \rg_stage3 [5:2] \_theResult___fst__h5096 [0] \rg_stage3 [1:0] }, Q = \rg_stage4, rval = 31'0000000000000000000000000000000).
+Adding SRST signal on $procdff$268 ($dff) from module mk_cfloat8_div (D = { \rg_stage2 [30:23] \x__h4747 \rg_stage2 [14:7] \rg_stage2 [5:2] \_theResult___fst__h4781 [0] \rg_stage2 [1:0] }, Q = \rg_stage3, rval = 31'0000000000000000000000000000000).
+Adding SRST signal on $procdff$267 ($dff) from module mk_cfloat8_div (D = { \rg_stage1 [25] \rg_stage1_7_BITS_24_TO_18_9_PLUS_rg_bias_1_00___d101 \x__h4439 \rg_stage1 [9:2] \x_quo__h4417 \rg_stage1 [1:0] }, Q = \rg_stage2, rval = 31'0000000000000000000000000000000).
+Adding SRST signal on $procdff$266 ($dff) from module mk_cfloat8_div (D = { \x__h2544 \IF_NOT_rg_op1_1_BITS_6_TO_3_4_EQ_0_5_6_CONCAT__ETC___d83 \hm2__h2466 \divisor__h2475 [6:4] \divisor__h2475 [2:0] \x__h4021 }, Q = { \rg_stage1 [25:14] \rg_stage1 [8:6] \rg_stage1 [4:1] }, rval = 19'0000000000000000000).
+Adding SRST signal on $procdff$266 ($dff) from module mk_cfloat8_div (D = \hm1__h2463 [3], Q = \rg_stage1 [9], rval = 1'0).
+Adding SRST signal on $procdff$266 ($dff) from module mk_cfloat8_div (D = \hm1__h2463 [0], Q = \rg_stage1 [5], rval = 1'0).
+Adding SRST signal on $procdff$265 ($dff) from module mk_cfloat8_div (D = { \rg_stage7 [16] \final_exp__h6331 \final_res__h6330 [2:0] }, Q = \rg_output, rval = 8'00000000).
+Adding SRST signal on $procdff$264 ($dff) from module mk_cfloat8_div (D = $procmux$224_Y, Q = \rg_op2, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$324 ($sdff) from module mk_cfloat8_div (D = \send_op2, Q = \rg_op2).
+Adding SRST signal on $procdff$263 ($dff) from module mk_cfloat8_div (D = $procmux$229_Y, Q = \rg_op1, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$326 ($sdff) from module mk_cfloat8_div (D = \send_op1, Q = \rg_op1).
+Adding SRST signal on $procdff$262 ($dff) from module mk_cfloat8_div (D = \rg_bias, Q = \rg_bias_1 [5:0], rval = 6'000000).
+Adding SRST signal on $procdff$261 ($dff) from module mk_cfloat8_div (D = $procmux$239_Y, Q = \rg_bias, rval = 6'000000).
+Adding EN signal on $auto$ff.cc:266:slice$330 ($sdff) from module mk_cfloat8_div (D = \send_bias, Q = \rg_bias).
+
+24.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 23 unused cells and 23 unused wires.
+<suppressed ~24 debug messages>
+
+24.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+24.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+24.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~23 debug messages>
+
+24.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+24.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+24.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+24.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+24.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+24.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+24.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~23 debug messages>
+
+24.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+24.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+24.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+24.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+24.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+24.23. Finished OPT passes. (There is nothing left to do.)
+
+25. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 4) from port B of cell mk_cfloat8_div.$eq$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:498$1 ($eq).
+Removed top 6 bits (of 7) from port B of cell mk_cfloat8_div.$sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:542$2 ($sub).
+Removed top 4 bits (of 7) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:545$5 ($mux).
+Removed top 4 bits (of 7) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:547$7 ($mux).
+Removed top 3 bits (of 7) from port A of cell mk_cfloat8_div.$sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:551$9 ($sub).
+Removed top 4 bits (of 7) from port B of cell mk_cfloat8_div.$sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:551$9 ($sub).
+Removed top 2 bits (of 7) from port Y of cell mk_cfloat8_div.$sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:551$9 ($sub).
+Removed top 3 bits (of 7) from port A of cell mk_cfloat8_div.$sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:554$10 ($sub).
+Removed top 4 bits (of 7) from port B of cell mk_cfloat8_div.$sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:554$10 ($sub).
+Removed top 2 bits (of 7) from port Y of cell mk_cfloat8_div.$sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:554$10 ($sub).
+Removed top 3 bits (of 4) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:563$14 ($mux).
+Removed top 3 bits (of 5) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:637$56 ($mux).
+Removed top 3 bits (of 4) from port B of cell mk_cfloat8_div.$add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:650$60 ($add).
+Removed top 3 bits (of 4) from port B of cell mk_cfloat8_div.$add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:653$62 ($add).
+Removed top 4 bits (of 7) from port B of cell mk_cfloat8_div.$shl$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:660$68 ($shl).
+Removed top 4 bits (of 7) from port B of cell mk_cfloat8_div.$shl$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:663$69 ($shl).
+Removed top 3 bits (of 4) from port B of cell mk_cfloat8_div.$eq$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:665$70 ($eq).
+Removed top 3 bits (of 4) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:756$122 ($mux).
+Removed top 4 bits (of 5) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:760$126 ($mux).
+Removed cell mk_cfloat8_div.$procmux$217 ($mux).
+Removed cell mk_cfloat8_div.$procmux$237 ($mux).
+Removed top 1 bits (of 4) from mux cell mk_cfloat8_div.$procmux$245 ($mux).
+Removed top 1 bits (of 5) from mux cell mk_cfloat8_div.$procmux$251 ($pmux).
+Removed cell mk_cfloat8_div.$auto$ff.cc:266:slice$329 ($dff).
+Removed cell mk_cfloat8_div.$auto$ff.cc:266:slice$322 ($dff).
+Removed top 1 bits (of 4) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:561$13 ($mux).
+Removed top 2 bits (of 4) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:626$49 ($mux).
+Removed top 1 bits (of 4) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:652$61 ($mux).
+Removed top 1 bits (of 4) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:612$40 ($mux).
+Removed top 1 bits (of 4) from port Y of cell mk_cfloat8_div.$add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:653$62 ($add).
+Removed top 1 bits (of 4) from port A of cell mk_cfloat8_div.$add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:653$62 ($add).
+Removed top 1 bits (of 4) from mux cell mk_cfloat8_div.$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:616$42 ($mux).
+Removed top 4 bits (of 7) from wire mk_cfloat8_div.IF_rg_op1_1_BITS_6_TO_3_4_EQ_0_5_THEN_0_CONCAT_ETC___d56.
+Removed top 4 bits (of 7) from wire mk_cfloat8_div.IF_rg_op2_9_BITS_6_TO_3_0_EQ_0_1_THEN_0_CONCAT_ETC___d72.
+Removed top 1 bits (of 4) from wire mk_cfloat8_div._theResult_____1_snd_snd_fst__h6515.
+Removed top 1 bits (of 4) from wire mk_cfloat8_div._theResult___snd_fst__h6476.
+Removed top 1 bits (of 4) from wire mk_cfloat8_div._theResult___snd_fst__h6480.
+Removed top 1 bits (of 5) from wire mk_cfloat8_div._theResult___snd_snd_snd__h6169.
+Removed top 3 bits (of 5) from wire mk_cfloat8_div._theResult___snd_snd_snd__h6186.
+Removed top 1 bits (of 4) from wire mk_cfloat8_div.categ___1__h6446.
+Removed top 1 bits (of 8) from wire mk_cfloat8_div.divisor__h3982.
+Removed top 1 bits (of 4) from wire mk_cfloat8_div.final_res__h6319.
+Removed top 1 bits (of 4) from wire mk_cfloat8_div.final_res__h6330.
+Removed top 1 bits (of 4) from wire mk_cfloat8_div.final_res__h6490.
+Removed top 1 bits (of 5) from wire mk_cfloat8_div.pre_res__h6098.
+Removed top 2 bits (of 5) from wire mk_cfloat8_div.pre_res__h6114.
+Removed top 3 bits (of 5) from wire mk_cfloat8_div.pre_res__h6130.
+Removed top 1 bits (of 7) from wire mk_cfloat8_div.rg_bias_1.
+Removed top 3 bits (of 4) from wire mk_cfloat8_div.x__h6230.
+Removed top 4 bits (of 5) from wire mk_cfloat8_div.x_quo__h4417.
+
+26. Executing PEEPOPT pass (run peephole optimizers).
+
+27. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 0 unused cells and 20 unused wires.
+<suppressed ~1 debug messages>
+
+28. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module mk_cfloat8_div:
+  creating $macc model for $add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:650$60 ($add).
+  creating $macc model for $add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:653$62 ($add).
+  creating $macc model for $add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:693$84 ($add).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:542$2 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:551$9 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:554$10 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:557$11 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:673$72 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:674$73 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:675$74 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:676$75 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:677$76 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:678$77 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:680$78 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:682$79 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:684$80 ($sub).
+  creating $macc model for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:686$81 ($sub).
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:686$81.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:684$80.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:682$79.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:680$78.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:678$77.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:677$76.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:676$75.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:675$74.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:674$73.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:673$72.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:557$11.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:554$10.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:551$9.
+  creating $alu model for $macc $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:542$2.
+  creating $alu model for $macc $add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:693$84.
+  creating $alu model for $macc $add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:653$62.
+  creating $alu model for $macc $add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:650$60.
+  creating $alu model for $le$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:549$8 ($le): new $alu
+  creating $alu model for $le$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:711$94 ($le): new $alu
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:689$82 ($lt): new $alu
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:691$83 ($lt): new $alu
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:695$85 ($lt): new $alu
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:697$86 ($lt): new $alu
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:699$87 ($lt): new $alu
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:701$88 ($lt): merged with $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:682$79.
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:703$89 ($lt): new $alu
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:705$90 ($lt): merged with $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:684$80.
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:707$91 ($lt): new $alu
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:709$92 ($lt): new $alu
+  creating $alu model for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:713$96 ($lt): new $alu
+  creating $alu cell for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:713$96: $auto$alumacc.cc:485:replace_alu$361
+  creating $alu cell for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:709$92: $auto$alumacc.cc:485:replace_alu$372
+  creating $alu cell for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:707$91: $auto$alumacc.cc:485:replace_alu$383
+  creating $alu cell for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:703$89: $auto$alumacc.cc:485:replace_alu$394
+  creating $alu cell for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:699$87: $auto$alumacc.cc:485:replace_alu$405
+  creating $alu cell for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:697$86: $auto$alumacc.cc:485:replace_alu$416
+  creating $alu cell for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:695$85: $auto$alumacc.cc:485:replace_alu$427
+  creating $alu cell for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:691$83: $auto$alumacc.cc:485:replace_alu$438
+  creating $alu cell for $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:689$82: $auto$alumacc.cc:485:replace_alu$449
+  creating $alu cell for $le$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:711$94: $auto$alumacc.cc:485:replace_alu$460
+  creating $alu cell for $le$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:549$8: $auto$alumacc.cc:485:replace_alu$473
+  creating $alu cell for $add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:650$60: $auto$alumacc.cc:485:replace_alu$486
+  creating $alu cell for $add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:653$62: $auto$alumacc.cc:485:replace_alu$489
+  creating $alu cell for $add$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:693$84: $auto$alumacc.cc:485:replace_alu$492
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:542$2: $auto$alumacc.cc:485:replace_alu$495
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:551$9: $auto$alumacc.cc:485:replace_alu$498
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:554$10: $auto$alumacc.cc:485:replace_alu$501
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:557$11: $auto$alumacc.cc:485:replace_alu$504
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:673$72: $auto$alumacc.cc:485:replace_alu$507
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:674$73: $auto$alumacc.cc:485:replace_alu$510
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:675$74: $auto$alumacc.cc:485:replace_alu$513
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:676$75: $auto$alumacc.cc:485:replace_alu$516
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:677$76: $auto$alumacc.cc:485:replace_alu$519
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:678$77: $auto$alumacc.cc:485:replace_alu$522
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:680$78: $auto$alumacc.cc:485:replace_alu$525
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:682$79, $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:701$88: $auto$alumacc.cc:485:replace_alu$528
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:684$80, $lt$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:705$90: $auto$alumacc.cc:485:replace_alu$533
+  creating $alu cell for $sub$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:686$81: $auto$alumacc.cc:485:replace_alu$538
+  created 28 $alu and 0 $macc cells.
+
+29. Executing SHARE pass (SAT-based resource sharing).
+
+30. Executing OPT pass (performing simple optimizations).
+
+30.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~21 debug messages>
+
+30.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+30.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+30.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    New input vector for $reduce_or cell $auto$opt_dff.cc:254:combine_resets$321: { $auto$rtlil.cc:2415:ReduceAnd$479 $auto$rtlil.cc:2412:Not$483 $auto$rtlil.cc:2412:Not$303 }
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 1 changes.
+
+30.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+30.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$323 ($sdff) from module mk_cfloat8_div (D = \final_exp__h6320 [3:1], Q = \rg_output [6:4], rval = 3'000).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$312 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 3 on $auto$ff.cc:266:slice$312 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 4 on $auto$ff.cc:266:slice$312 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 5 on $auto$ff.cc:266:slice$312 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$312 ($sdff) from module mk_cfloat8_div.
+
+30.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 10 unused cells and 34 unused wires.
+<suppressed ~21 debug messages>
+
+30.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+30.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+30.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+30.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+30.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+30.13. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$311 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 4 on $auto$ff.cc:266:slice$311 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 5 on $auto$ff.cc:266:slice$311 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$311 ($sdff) from module mk_cfloat8_div.
+
+30.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+30.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+30.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+30.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+30.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+30.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+30.20. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$310 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 5 on $auto$ff.cc:266:slice$310 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$310 ($sdff) from module mk_cfloat8_div.
+
+30.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+30.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+30.23. Rerunning OPT passes. (Maybe there is more to do..)
+
+30.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+30.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+30.26. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+30.27. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$309 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$309 ($sdff) from module mk_cfloat8_div.
+
+30.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+30.29. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+30.30. Rerunning OPT passes. (Maybe there is more to do..)
+
+30.31. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+30.32. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+30.33. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+30.34. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$308 ($sdff) from module mk_cfloat8_div.
+
+30.35. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+30.36. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+30.37. Rerunning OPT passes. (Maybe there is more to do..)
+
+30.38. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+30.39. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+30.40. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+30.41. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 2 on $auto$ff.cc:266:slice$297 ($sdff) from module mk_cfloat8_div.
+
+30.42. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+30.43. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+30.44. Rerunning OPT passes. (Maybe there is more to do..)
+
+30.45. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+30.46. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+30.47. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+30.48. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$296 ($sdff) from module mk_cfloat8_div.
+
+30.49. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+30.50. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+30.51. Rerunning OPT passes. (Maybe there is more to do..)
+
+30.52. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+30.53. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+30.54. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+30.55. Executing OPT_DFF pass (perform DFF optimizations).
+
+30.56. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+30.57. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+30.58. Finished OPT passes. (There is nothing left to do.)
+
+31. Executing MEMORY pass.
+
+31.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+31.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+31.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+31.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+31.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+31.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+31.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+31.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+31.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+31.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+32. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+33. Executing OPT pass (performing simple optimizations).
+
+33.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~10 debug messages>
+
+33.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~15 debug messages>
+Removed a total of 5 cells.
+
+33.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+33.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 4 unused cells and 19 unused wires.
+<suppressed ~5 debug messages>
+
+33.5. Finished fast OPT passes.
+
+34. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+35. Executing OPT pass (performing simple optimizations).
+
+35.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+35.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+35.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+35.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:561$13:
+      Old ports: A=3'111, B=3'000, Y=\_theResult_____1_snd_snd_fst__h6515
+      New ports: A=1'1, B=1'0, Y=\_theResult_____1_snd_snd_fst__h6515 [0]
+      New connections: \_theResult_____1_snd_snd_fst__h6515 [2:1] = { \_theResult_____1_snd_snd_fst__h6515 [0] \_theResult_____1_snd_snd_fst__h6515 [0] }
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:630$50:
+      Old ports: A=4'0000, B=4'1000, Y=\_theResult___snd_snd_fst__h6185
+      New ports: A=1'0, B=1'1, Y=\_theResult___snd_snd_fst__h6185 [3]
+      New connections: \_theResult___snd_snd_fst__h6185 [2:0] = 3'000
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:637$56:
+      Old ports: A=2'00, B=2'10, Y=\_theResult___snd_snd_snd__h6186
+      New ports: A=1'0, B=1'1, Y=\_theResult___snd_snd_snd__h6186 [1]
+      New connections: \_theResult___snd_snd_snd__h6186 [0] = 1'0
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:643$58:
+      Old ports: A={ 1'0 \hm1__h2463 3'000 }, B={ \hm1__h2463 4'0000 }, Y=\divisor__h2475
+      New ports: A={ 1'0 \hm1__h2463 }, B={ \hm1__h2463 1'0 }, Y=\divisor__h2475 [7:3]
+      New connections: \divisor__h2475 [2:0] = 3'000
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:718$98:
+      Old ports: A=3'100, B=3'011, Y=$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:718$98_Y
+      New ports: A=2'10, B=2'01, Y={ $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:718$98_Y [2] $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:718$98_Y [0] }
+      New connections: $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:718$98_Y [1] = $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:718$98_Y [0]
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:722$101:
+      Old ports: A=3'100, B=3'011, Y=$ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:722$101_Y
+      New ports: A=2'10, B=2'01, Y={ $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:722$101_Y [2] $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:722$101_Y [0] }
+      New connections: $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:722$101_Y [1] = $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:722$101_Y [0]
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $pmux cell $procmux$257:
+      Old ports: A=4'0000, B={ 4'0100 \_theResult___snd_snd_fst__h6185 4'1000 }, Y=\_theResult___snd_snd_fst__h6166
+      New ports: A=2'00, B={ 2'01 \_theResult___snd_snd_fst__h6185 [3] 3'010 }, Y=\_theResult___snd_snd_fst__h6166 [3:2]
+      New connections: \_theResult___snd_snd_fst__h6166 [1:0] = 2'00
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:626$49:
+      Old ports: A=\_theResult___snd_snd_fst__h6166 [1:0], B=2'10, Y=\_theResult___snd_snd_fst__h6158 [1:0]
+      New ports: A=1'0, B=1'1, Y=\_theResult___snd_snd_fst__h6158 [1]
+      New connections: \_theResult___snd_snd_fst__h6158 [0] = 1'0
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 8 changes.
+
+35.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+35.6. Executing OPT_SHARE pass.
+
+35.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+35.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+35.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~4 debug messages>
+
+35.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+35.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+35.14. Executing OPT_SHARE pass.
+
+35.15. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 1 on $auto$ff.cc:266:slice$313 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 2 on $auto$ff.cc:266:slice$313 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 3 on $auto$ff.cc:266:slice$313 ($sdff) from module mk_cfloat8_div.
+
+35.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+35.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~13 debug messages>
+
+35.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:587$31:
+      Old ports: A={ \rg_stage1 [16:14] 5'00000 }, B=\r2___1__h4510, Y=\_theResult___snd__h4498
+      New ports: A={ \rg_stage1 [16:14] 2'00 }, B=\r2___1__h4510 [7:3], Y=\_theResult___snd__h4498 [7:3]
+      New connections: \_theResult___snd__h4498 [2:0] = 3'000
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:725$107:
+      Old ports: A=\_theResult___snd__h4498, B=\r2__h4475, Y=\x__h4439
+      New ports: A=\_theResult___snd__h4498 [7:3], B=\r2__h4475 [7:3], Y=\x__h4439 [7:3]
+      New connections: \x__h4439 [2:0] = 3'000
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 2 changes.
+
+35.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+35.22. Executing OPT_SHARE pass.
+
+35.23. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 2 on $auto$ff.cc:266:slice$547 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 3 on $auto$ff.cc:266:slice$547 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 4 on $auto$ff.cc:266:slice$547 ($sdff) from module mk_cfloat8_div.
+
+35.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 0 unused cells and 6 unused wires.
+<suppressed ~1 debug messages>
+
+35.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~5 debug messages>
+
+35.26. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.27. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.28. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:591$32:
+      Old ports: A={ \rg_stage2 [21:15] 1'0 }, B=\r2___1__h4822, Y=\_theResult___snd__h4810
+      New ports: A=\rg_stage2 [21:17], B=\r2___1__h4822 [7:3], Y=\_theResult___snd__h4810 [7:3]
+      New connections: \_theResult___snd__h4810 [2:0] = { \rg_stage2 [16:15] 1'0 }
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 1 changes.
+
+35.29. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+35.30. Executing OPT_SHARE pass.
+
+35.31. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 3 on $auto$ff.cc:266:slice$548 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 4 on $auto$ff.cc:266:slice$548 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 5 on $auto$ff.cc:266:slice$548 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 7 on $auto$ff.cc:266:slice$603 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 8 on $auto$ff.cc:266:slice$603 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 9 on $auto$ff.cc:266:slice$603 ($sdff) from module mk_cfloat8_div.
+
+35.32. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 3 unused cells and 6 unused wires.
+<suppressed ~4 debug messages>
+
+35.33. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~14 debug messages>
+
+35.34. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.35. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.36. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:595$33:
+      Old ports: A={ \rg_stage3 [21:15] 1'0 }, B=\r2___1__h5137, Y=\_theResult___snd__h5125
+      New ports: A=\rg_stage3 [21:17], B=\r2___1__h5137 [7:3], Y=\_theResult___snd__h5125 [7:3]
+      New connections: \_theResult___snd__h5125 [2:0] = { \rg_stage3 [16:15] 1'0 }
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:729$108:
+      Old ports: A={ \_theResult___snd__h4810 [7:3] 3'000 }, B={ \r2__h4784 [7:3] 3'000 }, Y=\x__h4747
+      New ports: A=\_theResult___snd__h4810 [7:3], B=\r2__h4784 [7:3], Y=\x__h4747 [7:3]
+      New connections: \x__h4747 [2:0] = 3'000
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 2 changes.
+
+35.37. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+35.38. Executing OPT_SHARE pass.
+
+35.39. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 4 on $auto$ff.cc:266:slice$549 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 5 on $auto$ff.cc:266:slice$549 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$549 ($sdff) from module mk_cfloat8_div.
+
+35.40. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 3 unused cells and 12 unused wires.
+<suppressed ~4 debug messages>
+
+35.41. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~5 debug messages>
+
+35.42. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.43. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.44. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:599$34:
+      Old ports: A={ \rg_stage4 [21:15] 1'0 }, B=\r2___1__h5452, Y=\_theResult___snd__h5440
+      New ports: A=\rg_stage4 [21:17], B=\r2___1__h5452 [7:3], Y=\_theResult___snd__h5440 [7:3]
+      New connections: \_theResult___snd__h5440 [2:0] = { \rg_stage4 [16:15] 1'0 }
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 1 changes.
+
+35.45. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+35.46. Executing OPT_SHARE pass.
+
+35.47. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$642 ($sdff) from module mk_cfloat8_div (D = \rg_stage3 [15], Q = \rg_stage4 [15], rval = 1'0).
+Setting constant 0-bit at position 5 on $auto$ff.cc:266:slice$550 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$550 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 7 on $auto$ff.cc:266:slice$550 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 8 on $auto$ff.cc:266:slice$616 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 9 on $auto$ff.cc:266:slice$616 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 10 on $auto$ff.cc:266:slice$616 ($sdff) from module mk_cfloat8_div.
+
+35.48. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 3 unused cells and 6 unused wires.
+<suppressed ~4 debug messages>
+
+35.49. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~9 debug messages>
+
+35.50. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.51. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.52. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:603$35:
+      Old ports: A={ \rg_stage5 [21:15] 1'0 }, B=\r2___1__h5767, Y=\_theResult___snd__h5755
+      New ports: A=\rg_stage5 [21:17], B=\r2___1__h5767 [7:3], Y=\_theResult___snd__h5755 [7:3]
+      New connections: \_theResult___snd__h5755 [2:0] = { \rg_stage5 [16:15] 1'0 }
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:733$109:
+      Old ports: A={ \_theResult___snd__h5125 [7:3] 3'000 }, B={ \r2__h5099 [7:3] 3'000 }, Y=\x__h5062
+      New ports: A=\_theResult___snd__h5125 [7:3], B=\r2__h5099 [7:3], Y=\x__h5062 [7:3]
+      New connections: \x__h5062 [2:0] = 3'000
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 2 changes.
+
+35.53. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+35.54. Executing OPT_SHARE pass.
+
+35.55. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$659 ($sdff) from module mk_cfloat8_div (D = \rg_stage4 [15], Q = \rg_stage5 [15], rval = 1'0).
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$551 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 7 on $auto$ff.cc:266:slice$551 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 8 on $auto$ff.cc:266:slice$551 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$655 ($sdff) from module mk_cfloat8_div.
+
+35.56. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 4 unused cells and 10 unused wires.
+<suppressed ~5 debug messages>
+
+35.57. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~3 debug messages>
+
+35.58. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.59. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.60. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:737$110:
+      Old ports: A={ \_theResult___snd__h5440 [7:3] \rg_stage4 [16] 2'00 }, B={ \r2__h5414 [7:3] \rg_stage4 [17:16] 1'0 }, Y=\x__h5377
+      New ports: A={ \_theResult___snd__h5440 [7:3] \rg_stage4 [16] 1'0 }, B={ \r2__h5414 [7:3] \rg_stage4 [17:16] }, Y=\x__h5377 [7:1]
+      New connections: \x__h5377 [0] = 1'0
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 1 changes.
+
+35.61. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+35.62. Executing OPT_SHARE pass.
+
+35.63. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$683 ($sdff) from module mk_cfloat8_div (D = \rg_stage5 [15], Q = \rg_stage6 [15], rval = 1'0).
+Adding SRST signal on $auto$ff.cc:266:slice$682 ($sdff) from module mk_cfloat8_div (D = \rg_stage4 [16], Q = \rg_stage5 [16], rval = 1'0).
+Setting constant 0-bit at position 9 on $auto$ff.cc:266:slice$658 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 10 on $auto$ff.cc:266:slice$658 ($sdff) from module mk_cfloat8_div.
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$679 ($sdff) from module mk_cfloat8_div.
+
+35.64. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 3 unused cells and 3 unused wires.
+<suppressed ~4 debug messages>
+
+35.65. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~10 debug messages>
+
+35.66. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.67. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.68. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:737$110:
+      Old ports: A={ \_theResult___snd__h5440 [7:3] 2'00 }, B={ \r2__h5414 [7:3] 2'00 }, Y=\x__h5377 [7:1]
+      New ports: A=\_theResult___snd__h5440 [7:3], B=\r2__h5414 [7:3], Y=\x__h5377 [7:3]
+      New connections: \x__h5377 [2:1] = 2'00
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:741$111:
+      Old ports: A={ \_theResult___snd__h5755 [7:3] \rg_stage5 [16] 2'00 }, B={ \r2__h5729 [7:3] \rg_stage5 [17:16] 1'0 }, Y=\x__h5692
+      New ports: A={ \_theResult___snd__h5755 [7:3] \rg_stage5 [16] 1'0 }, B={ \r2__h5729 [7:3] \rg_stage5 [17:16] }, Y=\x__h5692 [7:1]
+      New connections: \x__h5692 [0] = 1'0
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 2 changes.
+
+35.69. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+35.70. Executing OPT_SHARE pass.
+
+35.71. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$689 ($sdff) from module mk_cfloat8_div (D = \rg_stage5 [16], Q = \rg_stage6 [16], rval = 1'0).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$690 ($sdff) from module mk_cfloat8_div.
+
+35.72. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 3 unused cells and 6 unused wires.
+<suppressed ~4 debug messages>
+
+35.73. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~7 debug messages>
+
+35.74. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.75. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.76. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:741$111:
+      Old ports: A={ \_theResult___snd__h5755 [7:3] 2'00 }, B={ \r2__h5729 [7:3] \rg_stage5 [17] 1'0 }, Y=\x__h5692 [7:1]
+      New ports: A={ \_theResult___snd__h5755 [7:3] 1'0 }, B={ \r2__h5729 [7:3] \rg_stage5 [17] }, Y=\x__h5692 [7:2]
+      New connections: \x__h5692 [1] = 1'0
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 1 changes.
+
+35.77. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+35.78. Executing OPT_SHARE pass.
+
+35.79. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$706 ($sdff) from module mk_cfloat8_div (D = \rg_stage5 [17], Q = \rg_stage6 [17], rval = 1'0).
+Setting constant 0-bit at position 10 on $auto$ff.cc:266:slice$693 ($sdff) from module mk_cfloat8_div.
+
+35.80. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 2 unused cells and 3 unused wires.
+<suppressed ~3 debug messages>
+
+35.81. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~5 debug messages>
+
+35.82. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.83. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.84. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+    Consolidated identical input bits for $mux cell $ternary$/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/tb/verilog/mk_cfloat8_div.v:741$111:
+      Old ports: A={ \_theResult___snd__h5755 [7:3] 1'0 }, B={ \r2__h5729 [7:3] 1'0 }, Y=\x__h5692 [7:2]
+      New ports: A=\_theResult___snd__h5755 [7:3], B=\r2__h5729 [7:3], Y=\x__h5692 [7:3]
+      New connections: \x__h5692 [2] = 1'0
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 1 changes.
+
+35.85. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+35.86. Executing OPT_SHARE pass.
+
+35.87. Executing OPT_DFF pass (perform DFF optimizations).
+
+35.88. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+35.89. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+35.90. Rerunning OPT passes. (Maybe there is more to do..)
+
+35.91. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+35.92. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+35.93. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+35.94. Executing OPT_SHARE pass.
+
+35.95. Executing OPT_DFF pass (perform DFF optimizations).
+
+35.96. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+35.97. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+35.98. Finished OPT passes. (There is nothing left to do.)
+
+36. Executing TECHMAP pass (map to technology primitives).
+
+36.1. Executing Verilog-2005 frontend: /nix/store/rdd3k15bm7qkhpq4kk4ghkxdqq3zjd1r-yosys/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/nix/store/rdd3k15bm7qkhpq4kk4ghkxdqq3zjd1r-yosys/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+36.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $sdff.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$d4760b7db19732bc184e1f25461b32f5548a347a\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $logic_not.
+Using template $paramod$32a7b7b86c07519b7537abc18e96f0331f97914d\_90_alu for cells of type $alu.
+Using template $paramod$dbcdc7e8aa1a4080cea2deda6fdc8772064f4d90\_90_alu for cells of type $alu.
+Using template $paramod$b18e16801adf491a64caa0542270798e5d4ac6b6\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $logic_or.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$3ef7d3dd227da7627a99c5e5a6a4deb817573e39\_90_alu for cells of type $alu.
+Using template $paramod$constmap:1e6fc77e0f4cfdbd39985040809a75c577d664a7$paramod$27de52f652ab558c6356ffa7562472f196b7b2dd\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Using template $paramod$78e969f2586efcf3a5b0b0440bcca0db83d5cca2\_90_alu for cells of type $alu.
+Using template $paramod$10ed987432f06055e5279101f9ec60a49861b43c\_90_alu for cells of type $alu.
+Using template $paramod$740b056ede97228d3eae64ea2fdc81f0a33e0fe7\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $ne.
+Using template $paramod$00298f3f8094950cb9a5ff2fda48d0d8bde8806c\_90_alu for cells of type $alu.
+Using template $paramod$20d3ee62d72123142eb855d7ddafd835e31ba009\_90_pmux for cells of type $pmux.
+Using template $paramod$97565c3687be688407d1272a293bd9d0ae6852dc\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $sdffe.
+Using extmapper simplemap for cells of type $and.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000111 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000110 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~1732 debug messages>
+
+37. Executing OPT pass (performing simple optimizations).
+
+37.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~475 debug messages>
+
+37.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~462 debug messages>
+Removed a total of 154 cells.
+
+37.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+37.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 178 unused cells and 972 unused wires.
+<suppressed ~179 debug messages>
+
+37.5. Finished fast OPT passes.
+
+38. Executing ABC pass (technology mapping using ABC).
+
+38.1. Extracting gate netlist of module `\mk_cfloat8_div' to `<abc-temp-dir>/input.blif'..
+Extracted 869 gates and 975 wires to a netlist network with 104 inputs and 80 outputs.
+
+38.1.1. Executing ABC.
+Running ABC command: "/nix/store/p9vsk7iilm6h471bwb1vl688w4r88dg7-yosys-abc/bin/abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+38.1.2. Re-integrating ABC results.
+ABC RESULTS:               NOT cells:       28
+ABC RESULTS:               MUX cells:       84
+ABC RESULTS:               AND cells:       17
+ABC RESULTS:              XNOR cells:       17
+ABC RESULTS:              NAND cells:       16
+ABC RESULTS:            ANDNOT cells:      214
+ABC RESULTS:                OR cells:       86
+ABC RESULTS:               NOR cells:       77
+ABC RESULTS:             ORNOT cells:       57
+ABC RESULTS:               XOR cells:      112
+ABC RESULTS:        internal signals:      791
+ABC RESULTS:           input signals:      104
+ABC RESULTS:          output signals:       80
+Removing temp directory.
+
+39. Executing OPT pass (performing simple optimizations).
+
+39.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+<suppressed ~16 debug messages>
+
+39.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+<suppressed ~18 debug messages>
+Removed a total of 6 cells.
+
+39.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+39.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 2 unused cells and 561 unused wires.
+<suppressed ~23 debug messages>
+
+39.5. Finished fast OPT passes.
+
+40. Executing HIERARCHY pass (managing design hierarchy).
+
+40.1. Analyzing design hierarchy..
+Top module:  \mk_cfloat8_div
+
+40.2. Analyzing design hierarchy..
+Top module:  \mk_cfloat8_div
+Removed 0 unused modules.
+
+41. Printing statistics.
+
+=== mk_cfloat8_div ===
+
+   Number of wires:                805
+   Number of wire bits:           1590
+   Number of public wires:         180
+   Number of public wire bits:     965
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                885
+     $_ANDNOT_                     212
+     $_AND_                         17
+     $_MUX_                         84
+     $_NAND_                        16
+     $_NOR_                         76
+     $_NOT_                         26
+     $_ORNOT_                       56
+     $_OR_                          85
+     $_SDFFE_PN0P_                  22
+     $_SDFF_PN0_                   157
+     $_SDFF_PP0_                     6
+     $_XNOR_                        17
+     $_XOR_                        111
+
+42. Executing CHECK pass (checking for obvious problems).
+Checking module mk_cfloat8_div...
+Found and reported 0 problems.
+
+43. Generating Graphviz representation of design.
+Writing dot description to `/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/runs/RUN_2023-12-14_05-20-19/05-yosys-synthesis/post_techmap.dot'.
+Dumping module mk_cfloat8_div to page 1.
+
+44. Executing SHARE pass (SAT-based resource sharing).
+
+45. Executing OPT pass (performing simple optimizations).
+
+45.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+45.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+45.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \mk_cfloat8_div..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+45.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \mk_cfloat8_div.
+Performed a total of 0 changes.
+
+45.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\mk_cfloat8_div'.
+Removed a total of 0 cells.
+
+45.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+45.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+
+45.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module mk_cfloat8_div.
+
+45.9. Finished OPT passes. (There is nothing left to do.)
+
+46. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 0 unused cells and 102 unused wires.
+<suppressed ~102 debug messages>
+{
+   "creator": "Yosys 0.33 (git sha1 2584903a060, clang++ 11.1.0 -fPIC -Os)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\mk_cfloat8_div": {
+         "num_wires":         703,
+         "num_wire_bits":     1253,
+         "num_pub_wires":     78,
+         "num_pub_wire_bits": 628,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         885,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 212,
+            "$_AND_": 17,
+            "$_MUX_": 84,
+            "$_NAND_": 16,
+            "$_NOR_": 76,
+            "$_NOT_": 26,
+            "$_ORNOT_": 56,
+            "$_OR_": 85,
+            "$_SDFFE_PN0P_": 22,
+            "$_SDFF_PN0_": 157,
+            "$_SDFF_PP0_": 6,
+            "$_XNOR_": 17,
+            "$_XOR_": 111
+         }
+      }
+   },
+      "design": {
+         "num_wires":         703,
+         "num_wire_bits":     1253,
+         "num_pub_wires":     78,
+         "num_pub_wire_bits": 628,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         885,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 212,
+            "$_AND_": 17,
+            "$_MUX_": 84,
+            "$_NAND_": 16,
+            "$_NOR_": 76,
+            "$_NOT_": 26,
+            "$_ORNOT_": 56,
+            "$_OR_": 85,
+            "$_SDFFE_PN0P_": 22,
+            "$_SDFF_PN0_": 157,
+            "$_SDFF_PP0_": 6,
+            "$_XNOR_": 17,
+            "$_XOR_": 111
+         }
+      }
+}
+
+[INFO] Applying latch mapping from '/home/kapil/.volare/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v'â¦
+
+47. Executing TECHMAP pass (map to technology primitives).
+
+47.1. Executing Verilog-2005 frontend: /home/kapil/.volare/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v
+Parsing Verilog input from `/home/kapil/.volare/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Successfully finished Verilog frontend.
+
+47.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+48. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+49. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_2 (noninv, pins=3, area=21.27) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__dfbbn_2 (noninv, pins=6, area=35.03) is a direct match for cell type $_DFFSR_NNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_2 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_2 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    \sky130_fd_sc_hd__dfbbn_2 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    unmapped dff cell: $_DFFSR_PNN_
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+49.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+Mapping DFF cells in module `\mk_cfloat8_div':
+  mapped 185 $_DFF_P_ cells to \sky130_fd_sc_hd__dfxtp_2 cells.
+{
+   "creator": "Yosys 0.33 (git sha1 2584903a060, clang++ 11.1.0 -fPIC -Os)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\mk_cfloat8_div": {
+         "num_wires":         910,
+         "num_wire_bits":     1460,
+         "num_pub_wires":     78,
+         "num_pub_wire_bits": 628,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         1092,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 212,
+            "$_AND_": 17,
+            "$_MUX_": 291,
+            "$_NAND_": 16,
+            "$_NOR_": 76,
+            "$_NOT_": 26,
+            "$_ORNOT_": 56,
+            "$_OR_": 85,
+            "$_XNOR_": 17,
+            "$_XOR_": 111,
+            "sky130_fd_sc_hd__dfxtp_2": 185
+         }
+      }
+   },
+      "design": {
+         "num_wires":         910,
+         "num_wire_bits":     1460,
+         "num_pub_wires":     78,
+         "num_pub_wire_bits": 628,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         1092,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 212,
+            "$_AND_": 17,
+            "$_MUX_": 291,
+            "$_NAND_": 16,
+            "$_NOR_": 76,
+            "$_NOT_": 26,
+            "$_ORNOT_": 56,
+            "$_OR_": 85,
+            "$_XNOR_": 17,
+            "$_XOR_": 111,
+            "sky130_fd_sc_hd__dfxtp_2": 185
+         }
+      }
+}
+
+[INFO] USING STRATEGY AREA 0
+
+50. Executing ABC pass (technology mapping using ABC).
+
+50.1. Extracting gate netlist of module `\mk_cfloat8_div' to `/tmp/yosys-abc-gUkkMh/input.blif'..
+Extracted 907 gates and 1102 wires to a netlist network with 194 inputs and 185 outputs.
+
+50.1.1. Executing ABC.
+Running ABC command: "/nix/store/p9vsk7iilm6h471bwb1vl688w4r88dg7-yosys-abc/bin/abc" -s -f /tmp/yosys-abc-gUkkMh/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-gUkkMh/abc.script".
+ABC: 
+ABC: + read_blif /tmp/yosys-abc-gUkkMh/input.blif 
+ABC: + read_lib -w /home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/runs/RUN_2023-12-14_05-20-19/tmp/6ca0db6bd4d44a1daa0d69d8a046adee.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.07 sec
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/runs/RUN_2023-12-14_05-20-19/tmp/6ca0db6bd4d44a1daa0d69d8a046adee.lib" has 175 cells (17 skipped: 14 seq; 3 tri-state; 0 no func; 0 dont_use).  Time =     0.11 sec
+ABC: Memory =    9.54 MB. Time =     0.11 sec
+ABC: Warning: Detected 2 multi-output gates (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + read_constr -v /home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/runs/RUN_2023-12-14_05-20-19/05-yosys-synthesis/synthesis.sdc 
+ABC: Setting driving cell to be "sky130_fd_sc_hd__inv_2/Y".
+ABC: Setting output load to be 33.442001.
+ABC: + read_constr /home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/runs/RUN_2023-12-14_05-20-19/05-yosys-synthesis/synthesis.sdc 
+ABC: + fx 
+ABC: + mfs 
+ABC: + strash 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + refactor -z 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + retime -D -D 5000 -M 5 
+ABC: + scleanup 
+ABC: Error: The network is combinational.
+ABC: + fraig_store 
+ABC: + balance 
+ABC: + fraig_store 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + refactor -z 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + fraig_store 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + refactor -z 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + fraig_store 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + refactor -z 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + fraig_store 
+ABC: + fraig_restore 
+ABC: + amap -m -Q 0.1 -F 20 -A 20 -C 5000 
+ABC: + retime -D -D 5000 
+ABC: + &get -n 
+ABC: + &st 
+ABC: + &dch 
+ABC: + &nf 
+ABC: + &put 
+ABC: + buffer -N 6 -S 750.0 
+ABC: Cannot find the default PI driving cell (sky130_fd_sc_hd__inv_2/Y) in the library.
+ABC: + upsize -D 5000 
+ABC: Cannot find the default PI driving cell (sky130_fd_sc_hd__inv_2/Y) in the library.
+ABC: Current delay (2534.40 ps) does not exceed the target delay (5000.00 ps). Upsizing is not performed.
+ABC: + dnsize -D 5000 
+ABC: Cannot find the default PI driving cell (sky130_fd_sc_hd__inv_2/Y) in the library.
+ABC: + stime -p 
+ABC: Cannot find the default PI driving cell (sky130_fd_sc_hd__inv_2/Y) in the library.
+ABC: WireLoad = "none"  Gates =    704 ( 23.2 %)   Cap = 12.0 ff (  5.1 %)   Area =     5415.19 ( 76.7 %)   Delay =  2594.73 ps  (  3.3 %)               
+ABC: Path  0 --      20 : 0    6 pi                      A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =  19.3 ff  Cmax =   0.0 ff  G =    0  
+ABC: Path  1 --     484 : 4    3 sky130_fd_sc_hd__or4_2  A =   8.76  Df = 659.7 -563.2 ps  S = 109.6 ps  Cin =  1.5 ff  Cout =   5.2 ff  Cmax = 310.4 ff  G =  328  
+ABC: Path  2 --     502 : 4    3 sky130_fd_sc_hd__or4_2  A =   8.76  Df =1232.3-1023.9 ps  S = 114.9 ps  Cin =  1.5 ff  Cout =   6.6 ff  Cmax = 310.4 ff  G =  416  
+ABC: Path  3 --     506 : 4    2 sky130_fd_sc_hd__a22o_2 A =  10.01  Df =1517.8 -417.1 ps  S =  46.5 ps  Cin =  2.3 ff  Cout =   5.0 ff  Cmax = 301.2 ff  G =  200  
+ABC: Path  4 --     509 : 4    6 sky130_fd_sc_hd__o31a_2 A =  10.01  Df =1881.0 -489.4 ps  S = 106.9 ps  Cin =  2.3 ff  Cout =  16.9 ff  Cmax = 285.7 ff  G =  689  
+ABC: Path  5 --     510 : 3    1 sky130_fd_sc_hd__mux2_2 A =  11.26  Df =2202.8 -577.8 ps  S =  43.1 ps  Cin =  2.3 ff  Cout =   1.5 ff  Cmax = 297.6 ff  G =   64  
+ABC: Path  6 --     511 : 2    1 sky130_fd_sc_hd__and2_2 A =   7.51  Df =2380.6 -634.7 ps  S =  35.0 ps  Cin =  1.5 ff  Cout =   2.2 ff  Cmax = 303.0 ff  G =  143  
+ABC: Path  7 --     512 : 1    1 sky130_fd_sc_hd__buf_1  A =   3.75  Df =2594.7 -529.4 ps  S = 396.2 ps  Cin =  2.1 ff  Cout =  33.4 ff  Cmax = 130.0 ff  G = 1590  
+ABC: Start-point = pi19 (\rg_op1 [6]).  End-point = po25 ($auto$rtlil.cc:2620:MuxGate$3815).
+ABC: + print_stats -m 
+ABC: netlist                       : i/o =  194/  185  lat =    0  nd =   704  edge =   1629  area =5415.77  delay = 9.00  lev = 9
+ABC: + write_blif /tmp/yosys-abc-gUkkMh/output.blif 
+
+50.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__nor4_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__or4_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a22oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a21bo_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a2bb2o_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__nor3_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__or3_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o21ba_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a22o_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o221a_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__nand3_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a211o_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__and4_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__or3b_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o2111a_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o32a_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a32o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a2111o_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o311a_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__nand4_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__nor2b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or4b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__and3b_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__a31o_2 cells:        8
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__xor2_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__and2b_2 cells:       17
+ABC RESULTS:   sky130_fd_sc_hd__or2_2 cells:       26
+ABC RESULTS:   sky130_fd_sc_hd__a311o_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__nand2_2 cells:       33
+ABC RESULTS:   sky130_fd_sc_hd__o22a_2 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__or2b_2 cells:       27
+ABC RESULTS:   sky130_fd_sc_hd__mux2_2 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__nand3b_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o31a_2 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__inv_2 cells:       44
+ABC RESULTS:   sky130_fd_sc_hd__a21o_2 cells:       30
+ABC RESULTS:   sky130_fd_sc_hd__o211a_2 cells:       26
+ABC RESULTS:   sky130_fd_sc_hd__o21a_2 cells:       25
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_2 cells:       30
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__and2_2 cells:       92
+ABC RESULTS:   sky130_fd_sc_hd__and3_2 cells:       31
+ABC RESULTS:   sky130_fd_sc_hd__buf_1 cells:      119
+ABC RESULTS:   sky130_fd_sc_hd__and4b_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a221o_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_2 cells:       18
+ABC RESULTS:   sky130_fd_sc_hd__nor2_2 cells:       56
+ABC RESULTS:        internal signals:      723
+ABC RESULTS:           input signals:      194
+ABC RESULTS:          output signals:      185
+Removing temp directory.
+
+51. Executing SETUNDEF pass (replace undef values with defined constants).
+
+52. Executing HILOMAP pass (mapping to constant drivers).
+Warning: Selection "sky130_fd_sc_hd__conb_1" did not match any module.
+Warning: Selection "LO" did not match any object.
+
+53. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+54. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \mk_cfloat8_div..
+Removed 0 unused cells and 1439 unused wires.
+<suppressed ~414 debug messages>
+
+55. Executing INSBUF pass (insert buffer cells for connected wires).
+Add mk_cfloat8_div/$auto$insbuf.cc:97:execute$4883: 1'1 -> \RDY_res
+Add mk_cfloat8_div/$auto$insbuf.cc:97:execute$4884: 1'1 -> \RDY_send
+Add mk_cfloat8_div/$auto$insbuf.cc:97:execute$4885: 1'1 -> \RDY_status
+Add mk_cfloat8_div/$auto$insbuf.cc:97:execute$4886: 1'1 -> \RDY_valid
+Add mk_cfloat8_div/$auto$insbuf.cc:97:execute$4887: 1'0 -> \status [6]
+
+56. Executing CHECK pass (checking for obvious problems).
+Checking module mk_cfloat8_div...
+Found and reported 0 problems.
+{
+   "creator": "Yosys 0.33 (git sha1 2584903a060, clang++ 11.1.0 -fPIC -Os)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\mk_cfloat8_div": {
+         "num_wires":         887,
+         "num_wire_bits":     919,
+         "num_pub_wires":     183,
+         "num_pub_wire_bits": 215,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         894,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a2111o_2": 2,
+            "sky130_fd_sc_hd__a211o_2": 4,
+            "sky130_fd_sc_hd__a211oi_2": 1,
+            "sky130_fd_sc_hd__a21bo_2": 1,
+            "sky130_fd_sc_hd__a21boi_2": 2,
+            "sky130_fd_sc_hd__a21o_2": 30,
+            "sky130_fd_sc_hd__a21oi_2": 18,
+            "sky130_fd_sc_hd__a221o_2": 3,
+            "sky130_fd_sc_hd__a22o_2": 3,
+            "sky130_fd_sc_hd__a22oi_2": 1,
+            "sky130_fd_sc_hd__a2bb2o_2": 3,
+            "sky130_fd_sc_hd__a311o_2": 3,
+            "sky130_fd_sc_hd__a31o_2": 8,
+            "sky130_fd_sc_hd__a31oi_2": 3,
+            "sky130_fd_sc_hd__a32o_2": 1,
+            "sky130_fd_sc_hd__and2_2": 92,
+            "sky130_fd_sc_hd__and2b_2": 17,
+            "sky130_fd_sc_hd__and3_2": 31,
+            "sky130_fd_sc_hd__and3b_2": 6,
+            "sky130_fd_sc_hd__and4_2": 2,
+            "sky130_fd_sc_hd__and4b_2": 3,
+            "sky130_fd_sc_hd__buf_1": 119,
+            "sky130_fd_sc_hd__buf_2": 5,
+            "sky130_fd_sc_hd__dfxtp_2": 185,
+            "sky130_fd_sc_hd__inv_2": 44,
+            "sky130_fd_sc_hd__mux2_2": 11,
+            "sky130_fd_sc_hd__nand2_2": 33,
+            "sky130_fd_sc_hd__nand3_2": 1,
+            "sky130_fd_sc_hd__nand3b_2": 2,
+            "sky130_fd_sc_hd__nand4_2": 2,
+            "sky130_fd_sc_hd__nor2_2": 56,
+            "sky130_fd_sc_hd__nor2b_2": 1,
+            "sky130_fd_sc_hd__nor3_2": 2,
+            "sky130_fd_sc_hd__nor4_2": 2,
+            "sky130_fd_sc_hd__o2111a_2": 2,
+            "sky130_fd_sc_hd__o211a_2": 26,
+            "sky130_fd_sc_hd__o21a_2": 25,
+            "sky130_fd_sc_hd__o21ai_2": 9,
+            "sky130_fd_sc_hd__o21ba_2": 3,
+            "sky130_fd_sc_hd__o21bai_2": 1,
+            "sky130_fd_sc_hd__o221a_2": 6,
+            "sky130_fd_sc_hd__o22a_2": 11,
+            "sky130_fd_sc_hd__o311a_2": 6,
+            "sky130_fd_sc_hd__o31a_2": 7,
+            "sky130_fd_sc_hd__o32a_2": 1,
+            "sky130_fd_sc_hd__or2_2": 26,
+            "sky130_fd_sc_hd__or2b_2": 27,
+            "sky130_fd_sc_hd__or3_2": 1,
+            "sky130_fd_sc_hd__or3b_2": 3,
+            "sky130_fd_sc_hd__or4_2": 6,
+            "sky130_fd_sc_hd__or4b_2": 1,
+            "sky130_fd_sc_hd__xnor2_2": 30,
+            "sky130_fd_sc_hd__xor2_2": 6
+         }
+      }
+   },
+      "design": {
+         "num_wires":         887,
+         "num_wire_bits":     919,
+         "num_pub_wires":     183,
+         "num_pub_wire_bits": 215,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         894,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a2111o_2": 2,
+            "sky130_fd_sc_hd__a211o_2": 4,
+            "sky130_fd_sc_hd__a211oi_2": 1,
+            "sky130_fd_sc_hd__a21bo_2": 1,
+            "sky130_fd_sc_hd__a21boi_2": 2,
+            "sky130_fd_sc_hd__a21o_2": 30,
+            "sky130_fd_sc_hd__a21oi_2": 18,
+            "sky130_fd_sc_hd__a221o_2": 3,
+            "sky130_fd_sc_hd__a22o_2": 3,
+            "sky130_fd_sc_hd__a22oi_2": 1,
+            "sky130_fd_sc_hd__a2bb2o_2": 3,
+            "sky130_fd_sc_hd__a311o_2": 3,
+            "sky130_fd_sc_hd__a31o_2": 8,
+            "sky130_fd_sc_hd__a31oi_2": 3,
+            "sky130_fd_sc_hd__a32o_2": 1,
+            "sky130_fd_sc_hd__and2_2": 92,
+            "sky130_fd_sc_hd__and2b_2": 17,
+            "sky130_fd_sc_hd__and3_2": 31,
+            "sky130_fd_sc_hd__and3b_2": 6,
+            "sky130_fd_sc_hd__and4_2": 2,
+            "sky130_fd_sc_hd__and4b_2": 3,
+            "sky130_fd_sc_hd__buf_1": 119,
+            "sky130_fd_sc_hd__buf_2": 5,
+            "sky130_fd_sc_hd__dfxtp_2": 185,
+            "sky130_fd_sc_hd__inv_2": 44,
+            "sky130_fd_sc_hd__mux2_2": 11,
+            "sky130_fd_sc_hd__nand2_2": 33,
+            "sky130_fd_sc_hd__nand3_2": 1,
+            "sky130_fd_sc_hd__nand3b_2": 2,
+            "sky130_fd_sc_hd__nand4_2": 2,
+            "sky130_fd_sc_hd__nor2_2": 56,
+            "sky130_fd_sc_hd__nor2b_2": 1,
+            "sky130_fd_sc_hd__nor3_2": 2,
+            "sky130_fd_sc_hd__nor4_2": 2,
+            "sky130_fd_sc_hd__o2111a_2": 2,
+            "sky130_fd_sc_hd__o211a_2": 26,
+            "sky130_fd_sc_hd__o21a_2": 25,
+            "sky130_fd_sc_hd__o21ai_2": 9,
+            "sky130_fd_sc_hd__o21ba_2": 3,
+            "sky130_fd_sc_hd__o21bai_2": 1,
+            "sky130_fd_sc_hd__o221a_2": 6,
+            "sky130_fd_sc_hd__o22a_2": 11,
+            "sky130_fd_sc_hd__o311a_2": 6,
+            "sky130_fd_sc_hd__o31a_2": 7,
+            "sky130_fd_sc_hd__o32a_2": 1,
+            "sky130_fd_sc_hd__or2_2": 26,
+            "sky130_fd_sc_hd__or2b_2": 27,
+            "sky130_fd_sc_hd__or3_2": 1,
+            "sky130_fd_sc_hd__or3b_2": 3,
+            "sky130_fd_sc_hd__or4_2": 6,
+            "sky130_fd_sc_hd__or4b_2": 1,
+            "sky130_fd_sc_hd__xnor2_2": 30,
+            "sky130_fd_sc_hd__xor2_2": 6
+         }
+      }
+}
+
+57. Executing Verilog backend.
+Dumping module `\mk_cfloat8_div'.
+
+Warnings: 3 unique messages, 3 total
+End of script. Logfile hash: ae16b2400c, CPU: user 1.56s system 0.02s, MEM: 48.88 MB peak
+Yosys 0.33 (git sha1 2584903a060, clang++ 11.1.0 -fPIC -Os)
+Time spent: 51% 2x abc (1 sec), 10% 48x opt_expr (0 sec), ...
