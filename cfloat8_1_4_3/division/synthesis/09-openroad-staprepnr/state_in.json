@@ -1,0 +1,26 @@
+{
+    "nl": "/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/runs/RUN_2023-12-14_05-20-19/05-yosys-synthesis/mk_cfloat8_div.nl.v",
+    "pnl": null,
+    "def": null,
+    "lef": null,
+    "odb": null,
+    "sdc": null,
+    "sdf": null,
+    "spef": null,
+    "lib": null,
+    "spice": null,
+    "mag": null,
+    "gds": null,
+    "mag_gds": null,
+    "klayout_gds": null,
+    "json_h": "/home/kapil/Shakti-Software-Development/Mindgrove/cs6230/cfloat8_1_4_3/division/runs/RUN_2023-12-14_05-20-19/04-yosys-jsonheader/mk_cfloat8_div.h.json",
+    "metrics": {
+        "design__lint_errors__count": 0,
+        "design__lint_timing_constructs__count": 0,
+        "design__lint_warnings__count": 40,
+        "design__latch__count": 0,
+        "design__instance__count": 894,
+        "design__instance_unmapped__count": 0,
+        "synthesis__check_error__count": 0
+    }
+}
