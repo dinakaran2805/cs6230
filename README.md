@@ -38,4 +38,6 @@ Waveform for pipelined test
 ![project_waveform2](https://github.com/dinakaran2805/cs6230/assets/130367148/b4ecebff-d1af-4c66-aab5-d7cdb6419b45)
 
 
+DIVISION:
+Refer https://github.com/dinakaran2805/cs6230/tree/master/cfloat8_1_4_3/division#readme
 
