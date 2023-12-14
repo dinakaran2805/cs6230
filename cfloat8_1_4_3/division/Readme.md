@@ -37,7 +37,7 @@
 
 Note - here sequencer and scoreboard runs independent and parallel with other
 
-## Synthesis
+## Synthesis:
 
 Area = 5415.77 um2
 
