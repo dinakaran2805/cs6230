@@ -116,10 +116,10 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
     Reg#(Bit#(1)) buffer5_rmode <- mkReg(0);
     Reg#(Bit#(4)) buffer5_bias <- mkReg(0);
 
-    Reg#(Int#(7)) temp2_exp_int <- mkReg(0);
-    Reg#(Int#(7)) temp3_exp_int <- mkReg(0);
-    Reg#(Int#(7)) temp4_exp_int <- mkReg(0);
-    Reg#(Int#(7)) temp5_exp_int <- mkReg(0);
+    Reg#(Int#(8)) temp2_exp_int <- mkReg(0);
+    Reg#(Int#(8)) temp3_exp_int <- mkReg(0);
+    Reg#(Int#(8)) temp4_exp_int <- mkReg(0);
+    Reg#(Int#(8)) temp5_exp_int <- mkReg(0);
     
     Reg#(Bit#(4)) normalized_count <- mkReg(0);
     Reg#(Bit#(6)) normalized_man <- mkReg(0);
@@ -155,11 +155,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
     endrule
 
     rule stage2;
-        Bit#(7) temp_exp;
-        Int#(7) temp_exp_int;
-        Int#(7) temp_exp1_int;
-        Int#(7) temp_exp2_int;
-        Int#(7) temp_bias_int;
+        Bit#(5) temp_exp;
         buffer2_sign1 <= buffer1_sign1;
         buffer2_sign2 <= buffer1_sign2;
         buffer2_exp1 <=  buffer1_exp1;
@@ -169,19 +165,18 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         buffer2_rmode <= buffer1_rmode;
         buffer2_bias <= buffer1_bias;
 
-        temp_exp1_int = unpack(signExtend(buffer2_exp1));
-        temp_exp2_int = unpack(signExtend(buffer2_exp2));
-        temp_bias_int = unpack(signExtend(buffer2_bias));
-        temp_exp =  (signExtend(buffer2_exp1) + signExtend(buffer2_exp2) - signExtend(buffer2_bias)) ;
+        temp_exp =  (signExtend(buffer2_exp1) + signExtend(buffer2_exp2) + negate(signExtend(buffer2_bias))) ;
+        // $display("DEBUG IN STAGE2 : exp1 : ",signExtend(buffer2_exp1), " exp2 : ", signExtend(buffer2_exp2), " bias : ", signExtend(buffer2_bias), " temp_exp : ", temp_exp);
+        $display("DEBUG IN STAGE2 : temp_exp : %b", temp_exp, " int : ", temp_exp);
         // temp_exp_int = unpack(temp_exp);
-        temp2_exp_int <= (temp_exp1_int + temp_exp2_int-temp_bias_int);
-        if(temp2_exp_int > 15)
+        if(temp_exp > 15)
             begin
                 //overflow condition for exponent
+                $display("OVERFLOW !!!");
                 temp_exp = 15; 
             end
-        stage2_output <= DT_cf8_143{sign: stage1_output.sign, exponent: truncate(pack(temp2_exp_int)), mantissa: 3'b000};
-        // $display("STAGE 2 OUTPUT : sign : ", stage2_output.sign, " exponent : ", stage2_output.exponent, " mantissa : ", stage2_output.mantissa);
+        stage2_output <= DT_cf8_143{sign: stage1_output.sign, exponent: truncate(temp_exp), mantissa: 3'b000};
+        $display("STAGE 2 OUTPUT : sign : ", stage2_output.sign, " exponent : ", stage2_output.exponent, " mantissa : ", stage2_output.mantissa);
   
     endrule
 
