@@ -115,6 +115,11 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
 
     Reg#(Bit#(1)) buffer5_rmode <- mkReg(0);
     Reg#(Bit#(4)) buffer5_bias <- mkReg(0);
+
+    Reg#(Int#(7)) temp2_exp_int <- mkReg(0);
+    Reg#(Int#(7)) temp3_exp_int <- mkReg(0);
+    Reg#(Int#(7)) temp4_exp_int <- mkReg(0);
+    Reg#(Int#(7)) temp5_exp_int <- mkReg(0);
     
     Reg#(Bit#(4)) normalized_count <- mkReg(0);
     Reg#(Bit#(6)) normalized_man <- mkReg(0);
@@ -151,7 +156,10 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
 
     rule stage2;
         Bit#(7) temp_exp;
-
+        Int#(7) temp_exp_int;
+        Int#(7) temp_exp1_int;
+        Int#(7) temp_exp2_int;
+        Int#(7) temp_bias_int;
         buffer2_sign1 <= buffer1_sign1;
         buffer2_sign2 <= buffer1_sign2;
         buffer2_exp1 <=  buffer1_exp1;
@@ -161,13 +169,18 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         buffer2_rmode <= buffer1_rmode;
         buffer2_bias <= buffer1_bias;
 
-        temp_exp =  (zeroExtend(buffer2_exp1) + zeroExtend(buffer2_exp2) - zeroExtend(buffer2_bias)) ;
-        if(temp_exp > 15)
+        temp_exp1_int = unpack(signExtend(buffer2_exp1));
+        temp_exp2_int = unpack(signExtend(buffer2_exp2));
+        temp_bias_int = unpack(signExtend(buffer2_bias));
+        temp_exp =  (signExtend(buffer2_exp1) + signExtend(buffer2_exp2) - signExtend(buffer2_bias)) ;
+        // temp_exp_int = unpack(temp_exp);
+        temp2_exp_int <= (temp_exp1_int + temp_exp2_int-temp_bias_int);
+        if(temp2_exp_int > 15)
             begin
                 //overflow condition for exponent
                 temp_exp = 15; 
             end
-        stage2_output <= DT_cf8_143{sign: stage1_output.sign, exponent: truncate(temp_exp), mantissa: 3'b000};
+        stage2_output <= DT_cf8_143{sign: stage1_output.sign, exponent: truncate(pack(temp2_exp_int)), mantissa: 3'b000};
         // $display("STAGE 2 OUTPUT : sign : ", stage2_output.sign, " exponent : ", stage2_output.exponent, " mantissa : ", stage2_output.mantissa);
   
     endrule
@@ -179,6 +192,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         Bit#(8) inter_mantissa1;
         Bit#(8) inter_mantissa2;
         
+        temp3_exp_int <= temp2_exp_int;
 
         buffer3_sign1 <= buffer2_sign1;
         buffer3_sign2 <= buffer2_sign2;
@@ -207,6 +221,8 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
 
     // rule to normalize the value
     rule stage4;
+
+        temp4_exp_int <= temp3_exp_int;
 
         buffer4_sign1 <= buffer3_sign1;
         buffer4_sign2 <= buffer3_sign2;
@@ -267,6 +283,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
         Bit#(3) temp_mantissa;
         buffer5_rmode <= buffer4_rmode;
         buffer5_bias <= buffer4_bias;
+        temp5_exp_int <= temp4_exp_int;
 
         if(buffer5_rmode == 1'b1)
             begin
@@ -276,7 +293,7 @@ module cfloat8_mul(Ifc_cfloat8_1_4_3);
 
         temp_exponent = stage4_output.exponent;
         temp_mantissa = rounded_man;
-        if(buffer4_exp >= 15)
+        if(temp5_exp_int >= 15)
         begin
                 temp_exponent = 15;
                 temp_mantissa = 7;
